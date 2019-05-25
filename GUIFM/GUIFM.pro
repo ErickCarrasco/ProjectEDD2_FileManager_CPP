@@ -25,14 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        BinaryTree.cpp \
         BinaryTreeNode.cpp \
         Field.cpp \
+        Key.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        BinaryTree.h \
         BinaryTreeNode.h \
         Field.h \
+        Key.h \
         mainwindow.h
 
 FORMS += \

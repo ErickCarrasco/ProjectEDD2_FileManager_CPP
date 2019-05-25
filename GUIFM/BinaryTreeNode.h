@@ -1,5 +1,6 @@
 #ifndef BinaryTreeNode_h
 #define BinaryTreeNode_h
+#include "Key.h"
 #include <vector>
 #include <string>
 
