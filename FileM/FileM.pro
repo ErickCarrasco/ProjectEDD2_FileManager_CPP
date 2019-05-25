@@ -4,11 +4,9 @@ greaterThan(QT_MAJOR_VERSION, 4) : QT += widgets
 
 HEADERS += \
     BinaryTreeNode.h \
-    Field.h \
-    mainwindow.h
+    Field.h
 
 SOURCES += \
     BinaryTreeNode.cpp \
     Field.cpp \
-    main.cpp \
-    mainwindow.cpp
+    main.cpp
