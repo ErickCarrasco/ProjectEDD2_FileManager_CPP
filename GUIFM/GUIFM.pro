@@ -37,6 +37,7 @@ HEADERS += \
         BinaryTreeNode.h \
         Field.h \
         Key.h \
+        linkedlist.h \
         mainwindow.h
 
 FORMS += \
