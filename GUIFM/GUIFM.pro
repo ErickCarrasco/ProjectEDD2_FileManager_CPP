@@ -29,6 +29,7 @@ SOURCES += \
         BinaryTreeNode.cpp \
         Field.cpp \
         Key.cpp \
+        file.cpp \
         main.cpp \
         mainwindow.cpp
 
@@ -37,6 +38,7 @@ HEADERS += \
         BinaryTreeNode.h \
         Field.h \
         Key.h \
+        file.h \
         linkedlist.h \
         mainwindow.h \
         queue.h
