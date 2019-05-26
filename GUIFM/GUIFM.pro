@@ -38,7 +38,8 @@ HEADERS += \
         Field.h \
         Key.h \
         linkedlist.h \
-        mainwindow.h
+        mainwindow.h \
+        queue.h
 
 FORMS += \
         mainwindow.ui
