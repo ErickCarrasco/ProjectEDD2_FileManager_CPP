@@ -224,6 +224,7 @@ bool File::readMetaData(){
   return false;
 }
 
+//READ AVAIL LIST
 bool File::readAvailData(){
   file.clear();
 
@@ -247,6 +248,46 @@ bool File::readAvailData(){
     availList.clear();
     lastDeleted = stoi(in);
     availistBuild(lastDeleted);
+    return true;
+  }
+
+  return false;
+}
+
+//READ FIELD DATA
+bool File::readFieldData(){
+  file.clear();
+
+  if (file) {
+    string line;
+    string field;
+
+    file.seekg(8);
+    getline(file, line);
+
+    stringstream pipeStream(line);
+    fields.clear();
+
+    while (getline(pipeStream, field, '|')) {
+      stringstream commaStream(field);
+
+      string type, name, size, isPrimary;
+      getline(commaStream, type, ',');
+      getline(commaStream, name, ',');
+      getline(commaStream, size, ',');
+      getline(commaStream, isPrimary, ',');
+
+
+      Field nField(stoi(type), name, stoi(size));
+
+      if (isPrimary == "1") {
+        nField.setPrimaryKey(true);
+      }
+
+      fields.insert(nField);
+    }
+
+    //calculateSizes();
     return true;
   }
 
@@ -291,6 +332,7 @@ int File::position(int index){
   index --;
   return (recordSize*index) + metaSize;
 }
+
 
 //DESTRUCTOR
 File::~File(){
