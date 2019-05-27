@@ -71,266 +71,266 @@ void File::setLock(){
 
 //Open File
 bool File::openFile(){
-  bool exists;
-  ifstream infile(path);
+      bool exists;
+      ifstream infile(path);
 
-  if (!infile.good()) {
-    ofstream outfile(path);
-    outfile.close();
-    exists = false;
-  }else{
-    exists = true;
-  }
+      if (!infile.good()) {
+        ofstream outfile(path);
+        outfile.close();
+        exists = false;
+      }else{
+        exists = true;
+      }
 
-  infile.close();
+      infile.close();
 
-  file.close();
-  file.open(path, fstream::out | fstream::in);
+      file.close();
+      file.open(path, fstream::out | fstream::in);
 
-  if (exists) {
-    file.seekg(0, ios::beg);
+      if (exists) {
+        file.seekg(0, ios::beg);
 
-    char first = file.get();
+        char first = file.get();
 
-    if (!isdigit(first) && first != '-') {
+        if (!isdigit(first) && first != '-') {
+          return false;
+        }
+      }
+
+      if (file) {
+        //NEEDS UPDATE !!
+        if (exists) {
+          readMetaData();
+          //seekFirst();
+          //loadIndex();
+        }
+
+       //qDebug() << "File opened successfully";
+        return true;
+      }
+
+     //qDebug() << "Error opening file";
       return false;
-    }
-  }
-
-  if (file) {
-    //NEEDS UPDATE !!
-    if (exists) {
-      readMetaData();
-      //seekFirst();
-      //loadIndex();
-    }
-
-   //qDebug() << "File opened successfully";
-    return true;
-  }
-
- //qDebug() << "Error opening file";
-  return false;
 }
 
 //Open File with path
 bool File::openFile(string nPath){
-  path = nPath;
-  return openFile();
+      path = nPath;
+      return openFile();
 }
 
 //Close File
 void File::closeFile(){
-  file.close();
+      file.close();
 
-  path = "";
-  lastDeleted = -1;
-  recordSize = -1;
-  metaSize = -1;
-  blockSize = 10;
-  currentBlock = -1;
+      path = "";
+      lastDeleted = -1;
+      recordSize = -1;
+      metaSize = -1;
+      blockSize = 10;
+      currentBlock = -1;
 
-  locked = false;
+      locked = false;
 
-  inBuffer = List<List<string>>(blockSize);
-  outBuffer = List<List<string>>(blockSize);
-  fields.clear();
-  availList.clear();
+      inBuffer = List<List<string>>(blockSize);
+      outBuffer = List<List<string>>(blockSize);
+      fields.clear();
+      availList.clear();
 }
 
 //*** WRITE METADATA ***
 
 //Write Metadata
 bool File::writeMetaData(){
-  if (writeAvailData() && writeFieldData()) {
-   qDebug() << "Meta written successfully";
-    return true;
-  }
+      if (writeAvailData() && writeFieldData()) {
+       qDebug() << "Meta written successfully";
+        return true;
+      }
 
- qDebug() << "Error at writing meta";
-  return false;
+     qDebug() << "Error at writing meta";
+      return false;
 }
 
 
 //Write AvailList
 bool File::writeAvailData(){
-  file.clear();
+      file.clear();
 
-  if (file) {
-    file.seekp(0, ios::beg);
-    string temp = to_string(lastDeleted);
+      if (file) {
+        file.seekp(0, ios::beg);
+        string temp = to_string(lastDeleted);
 
-    while(temp.length() < 6){
-      temp += "*";
-    }
+        while(temp.length() < 6){
+          temp += "*";
+        }
 
-    if (temp.length() > 6) {
-      temp = temp.substr(0, 5);
-    }
+        if (temp.length() > 6) {
+          temp = temp.substr(0, 5);
+        }
 
-    temp += "\n";
+        temp += "\n";
 
-    file.write(temp.c_str(), temp.length());
-    file.flush();
-    return true;
-  }
+        file.write(temp.c_str(), temp.length());
+        file.flush();
+        return true;
+      }
 
-  return false;
+      return false;
 }
 
 //Write Fields
 bool File::writeFieldData(){ //Escribir los campos al meta
-  file.clear();
+      file.clear();
 
-  if (file) {
-    string out = "";
+      if (file) {
+        string out = "";
 
-    /* Estructura del string de los campos:
-    type,name,size|type,name,size */
+        /* Estructura del string de los campos:
+        type,name,size|type,name,size */
 
-    for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
-         out += to_string(fields[i].getType());
-        out += ",";
-        out += fields[i].getName();
-        out += ",";
-        out += to_string(fields[i].getSize());
-        out += ",";
+        for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
+             out += to_string(fields[i].getType());
+            out += ",";
+            out += fields[i].getName();
+            out += ",";
+            out += to_string(fields[i].getSize());
+            out += ",";
 
-        if (fields[i].getIsPrimaryKey()) {
-            out += "1";
-        }else{
-            out += "0";
+            if (fields[i].getIsPrimaryKey()) {
+                out += "1";
+            }else{
+                out += "0";
+            }
+                if (i != fields.size) { //No añade un '|' después del último registro
+                out += "|";
+            }
+
         }
-            if (i != fields.size) { //No añade un '|' después del último registro
-            out += "|";
-        }
 
-    }
+      out += "\n"; //Agregar un salto de línea
 
-  out += "\n"; //Agregar un salto de línea
+      //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
+      file.seekp(8);
+      file.write(out.c_str(), out.length());
+      file.flush();
+      return true;
+      }
 
-  //Moverse a la posición 8 (el AvailList abarca 7 bytes) y escribir
-  file.seekp(8);
-  file.write(out.c_str(), out.length());
-  file.flush();
-  return true;
-  }
-
-  qDebug() << "Error at writing fields";
-  return false;
+      qDebug() << "Error at writing fields";
+      return false;
 }
 
 //*** READ METADATA ***
 
 //READ METADATA
 bool File::readMetaData(){
-  if (readFieldData() && readAvailData()) {
-    return true;
-  }
-  return false;
+      if (readFieldData() && readAvailData()) {
+        return true;
+      }
+      return false;
 }
 
 //READ AVAIL LIST
 bool File::readAvailData(){
-  file.clear();
+      file.clear();
 
-  if(file){
-    file.seekg(0, ios::beg);
+      if(file){
+        file.seekg(0, ios::beg);
 
-    string in = "";
-    for (size_t i = 0; i < 7; i++) {
-      in += char(file.get());
-    }
+        string in = "";
+        for (size_t i = 0; i < 7; i++) {
+          in += char(file.get());
+        }
 
-    //Eliminar los asteriscos del string
-    for (size_t i = 0; i < in.length(); i++) {
-      if (in[i] == '*') {
-        in = in.substr(0, i);
-        break;
+        //Eliminar los asteriscos del string
+        for (size_t i = 0; i < in.length(); i++) {
+          if (in[i] == '*') {
+            in = in.substr(0, i);
+            break;
+          }
+        }
+
+        //Construir el AvailList
+        availList.clear();
+        lastDeleted = stoi(in);
+        availistBuild(lastDeleted);
+        return true;
       }
-    }
 
-    //Construir el AvailList
-    availList.clear();
-    lastDeleted = stoi(in);
-    availistBuild(lastDeleted);
-    return true;
-  }
-
-  return false;
+      return false;
 }
 
 //READ FIELD DATA
 bool File::readFieldData(){
-  file.clear();
+      file.clear();
 
-  if (file) {
-    string line;
-    string field;
+      if (file) {
+        string line;
+        string field;
 
-    file.seekg(8);
-    getline(file, line);
+        file.seekg(8);
+        getline(file, line);
 
-    stringstream pipeStream(line);
-    fields.clear();
+        stringstream pipeStream(line);
+        fields.clear();
 
-    while (getline(pipeStream, field, '|')) {
-      stringstream commaStream(field);
+        while (getline(pipeStream, field, '|')) {
+          stringstream commaStream(field);
 
-      string type, name, size, isPrimary;
-      getline(commaStream, type, ',');
-      getline(commaStream, name, ',');
-      getline(commaStream, size, ',');
-      getline(commaStream, isPrimary, ',');
+          string type, name, size, isPrimary;
+          getline(commaStream, type, ',');
+          getline(commaStream, name, ',');
+          getline(commaStream, size, ',');
+          getline(commaStream, isPrimary, ',');
 
 
-      Field nField(stoi(type), name, stoi(size));
+          Field nField(stoi(type), name, stoi(size));
 
-      if (isPrimary == "1") {
-        nField.setPrimaryKey(true);
+          if (isPrimary == "1") {
+            nField.setPrimaryKey(true);
+          }
+
+          fields.insert(nField);
+        }
+
+        //calculateSizes();
+        return true;
       }
 
-      fields.insert(nField);
-    }
-
-    //calculateSizes();
-    return true;
-  }
-
-  return false;
+      return false;
 }
 
 //*** AVAIL LIST BUILD ***
 bool File::availistBuild(int pos){
-  if (recordSize == -1) {
-    return false;
-  }
+      if (recordSize == -1) {
+        return false;
+      }
 
-  if (pos != -1) {
-    file.clear();
+      if (pos != -1) {
+        file.clear();
 
-    if (file) {
-      availList.insert(pos);
-      file.seekp(position(pos));
-      string in = "";
+        if (file) {
+          availList.insert(pos);
+          file.seekp(position(pos));
+          string in = "";
 
-      getline(file, in);
-      for (size_t i = 1; i < in.length(); i++) {
-        if (in[i] == '*') {
-          in = in.substr(1, i-1);
-          break;
+          getline(file, in);
+          for (size_t i = 1; i < in.length(); i++) {
+            if (in[i] == '*') {
+              in = in.substr(1, i-1);
+              break;
+            }
+          }
+
+         //qDebug() << in.c_str();
+          return availistBuild(stoi(in));
+
+        }else{
+          return false;
         }
       }
 
-     //qDebug() << in.c_str();
-      return availistBuild(stoi(in));
-
-    }else{
-      return false;
-    }
-  }
-
-  return true;
+      return true;
 }
 
 //*** POSITION ***
@@ -392,6 +392,28 @@ bool File::flush(){
         }
     }
     return false;
+}
+
+//SEEK
+bool File::seek(int block){
+    file.clear();
+    if(!locked){
+        //File is not locked. Can't process
+        return false;
+    }
+
+    if(file){
+
+    }
+}
+
+//NEXT
+bool File::next(){
+    if (currentBlock<=1) {
+        currentBlock=1;
+    }else{
+        currentBlock++;
+    }
 }
 
 //DESTRUCTOR
