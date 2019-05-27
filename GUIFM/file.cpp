@@ -4,6 +4,8 @@ List<Field> File::getFields(){
   return fields;
 }
 
+//*** CONSTRUCTORS ***
+
 //Constructores
 File::File(){
     path = "";
@@ -45,29 +47,29 @@ File::File(string nPath, int nBlockSize){
 }
 
 void File::setLock(){
- //qDebug() << "Attempting to lock file";
+    qDebug() << "Attempting to lock file";
 
-  if (locked) {
+    if (locked) {
 
-    return;
-  }
+        return;
+    }
 
-  if (fields.size <= 0) {
+    if (fields.size <= 0) {
 
-    return;
-  }
+        return;
+    }
 
-  locked = true;
+    locked = true;
 
-  //Escribir meta al archivo y calcular los tamaños
-  //writeMeta();
-  //calculateSizes();
+    //Escribir meta al archivo y calcular los tamaños
+    writeMetaData();
+    //calculateSizes();
 
- //qDebug() << "File locked successfully";
-  //seekFirst();
+    //qDebug() << "File locked successfully";
+    //seekFirst();
 }
 
-//Open Archivo
+//Open File
 bool File::openFile(){
   bool exists;
   ifstream infile(path);
@@ -98,7 +100,7 @@ bool File::openFile(){
   if (file) {
     //NEEDS UPDATE !!
     if (exists) {
-      //readMeta();
+      readMetaData();
       //seekFirst();
       //loadIndex();
     }
@@ -111,11 +113,13 @@ bool File::openFile(){
   return false;
 }
 
+//Open File with path
 bool File::openFile(string nPath){
   path = nPath;
   return openFile();
 }
 
+//Close File
 void File::closeFile(){
   file.close();
 
@@ -134,7 +138,7 @@ void File::closeFile(){
   availList.clear();
 }
 
-//METADATA
+//*** WRITE METADATA ***
 
 //Write Metadata
 bool File::writeMetaData(){
@@ -216,6 +220,8 @@ bool File::writeFieldData(){ //Escribir los campos al meta
   return false;
 }
 
+//*** READ METADATA ***
+
 //READ METADATA
 bool File::readMetaData(){
   if (readFieldData() && readAvailData()) {
@@ -294,7 +300,7 @@ bool File::readFieldData(){
   return false;
 }
 
-//AVAIL LIST BUILD
+//*** AVAIL LIST BUILD ***
 bool File::availistBuild(int pos){
   if (recordSize == -1) {
     return false;
@@ -327,16 +333,70 @@ bool File::availistBuild(int pos){
   return true;
 }
 
-//POSITION
+//*** POSITION ***
 int File::position(int index){
-  index --;
-  return (recordSize*index) + metaSize;
+    index --;
+    return (recordSize*index) + metaSize;
 }
 
+//*** BUFFER FUNCTIONS ***
+
+//FLUSH
+bool File::flush(){
+    if(locked){
+        file.clear();
+        if(file){
+            for (int i =1 ;i <= outBuffer.size;i++) {
+                if(!availList.isEmpty()){
+                    //Escribir en la posicion del availList
+                    file.seekp(position(availList[availList.size]));
+                    availList.remove(availList.size);
+                }else{
+                    //Escritura al final del archivo
+                    file.seekp(0, ios_base::end);
+                }
+
+                for (int j = 1;j <= outBuffer.size; j++) {
+                    string out = outBuffer[i][j];//Datos a escribir
+
+                    //Agregar espacios si el campo es menor que el field size
+                    while (int(out.length()) < fields[j].getSize()) {
+                        out += " ";
+                    }
+
+                     //Acortar string en caso de que sea mayor que el field size
+                    if(int(out.length()) > fields[j].getSize()){
+                        out = out.substr(0, fields[j].getSize());
+                    }
+
+                    //Escribir String al archivo
+                    file.write(out.c_str(), out.length());
+
+                    //Escribir coma en caso que no sea el ultimo field del record
+                    if (j < fields.size) {
+                        file.write(",",1);
+                    }
+
+                }//FIN FOR ESCRITURA DATA
+
+                file.write("\n", 1);
+                //Salto de linea despues de cada registro
+
+            }//FIN FOR INICIAL
+
+            file.flush();
+            outBuffer.clear();
+            return true;
+        }else {
+            return false;
+        }
+    }
+    return false;
+}
 
 //DESTRUCTOR
 File::~File(){
-  file.close();
+    file.close();
 }
 
 

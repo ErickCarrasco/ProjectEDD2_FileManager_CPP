@@ -40,7 +40,7 @@ private:
     //Funciones del file
     int pos(int);//Calcula la posicion del registro a traves de un indice
     bool availistBuild(int);//Construir la lista de posiciones disponibles
-    int position(int); //Calcula la posición del registro en el índice proporcionado
+    int position(int); //Calcula la posicion del registro en el indice proporcionado
 
 
 public:
