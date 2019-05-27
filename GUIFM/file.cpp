@@ -1,8 +1,5 @@
 #include "file.h"
 
-List<Field> File::getFields(){
-  return fields;
-}
 
 //*** CONSTRUCTORS ***
 
@@ -339,6 +336,17 @@ int File::position(int index){
     return (recordSize*index) + metaSize;
 }
 
+//*** FILESIZE ***
+long File::filesize(){
+    ifstream infile(path, ios::binary | ios::ate);
+    if(infile){
+        long retVal = infile.tellg();
+        infile.close();
+        return retVal;
+    }
+    return -1;
+}
+
 //*** BUFFER FUNCTIONS ***
 
 //AddFIELD
@@ -483,6 +491,93 @@ bool File::next(){
         currentBlock++;
     }
 }
+
+
+//BLOCK DATA
+List<List<string>> File::data(){
+  return inBuffer;
+}
+
+//GET RECORD
+List<string> File::getRecord(int pos){
+    file.clear();
+    if(file){
+        string scan;
+        file.seekg(position(pos));
+        getline(file, scan);
+        stringstream inSS(scan);
+        List<string> nRecord;
+        for(int i =0; i<fields.size;i++){
+            string exData;
+            getline(inSS, exData, ',' );
+            nRecord.insert(exData);
+        }
+        return nRecord;
+
+    }
+    return List<string>(0);
+
+}
+
+//***FIELD OPERATIONS***
+
+//GETFIELDS
+List<Field> File::getFields(){
+  return fields;
+}
+
+//GetFieldQuantity
+int File::fieldQuantity(){
+    return fields.size;
+}
+
+//GETRECORDQUANTITY
+int File::recordQuantity(){
+    if(locked){
+        return (filesize()-metaSize)/recordSize;
+    }
+    return -1;
+}
+
+//BLOCKQUANTITY
+int File::blockQuantity(){
+    if(locked){
+        int fileS= filesize();
+        int cont=0;
+        if((fileS - metaSize) % blockSize !=0){
+            cont++;
+        }
+        cont+=(((fileS - metaSize)/blockSize)/recordSize);
+        return cont;
+    }
+    return -1;
+}
+
+//GetRecordSize
+int File::getRecordSize(){
+    return recordSize;
+}
+
+//GetMetaDataSize
+int File::getMetaSize(){
+    return metaSize;
+}
+
+//GetBlockSize
+int File::getBlockSize(){
+    return blockSize;
+}
+
+//GetPath
+string File::getPath(){
+    return path;
+}
+
+//GetIsLocked
+bool File::getLocked(){
+    return locked;
+}
+
 
 //DESTRUCTOR
 File::~File(){

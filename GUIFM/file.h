@@ -44,7 +44,8 @@ private:
     List<List<string>> outBuffer; //Registros cargados en memoria
 
     //Funciones del file
-    int pos(int);//Calcula la posicion del registro a traves de un indice
+    //int pos(int);//Calcula la posicion del registro a traves de un indice
+    long filesize(); //Calcula el tamaño del archivo
     bool availistBuild(int);//Construir la lista de posiciones disponibles
     int position(int); //Calcula la posicion del registro en el indice proporcionado
 
@@ -80,6 +81,8 @@ public:
     int getRecordSize(); //Retorna recordSize
     int getMetaSize(); //Retorna metaSize
     int getBlockSize(); //Retorna el tamaño de bloque
+    string getPath();//Retorna el path
+    bool getLocked();//Retorna si el archivo esta bloqueado
 
     //BUFFERS
     bool addField(int, string, int, bool); //Agregar un nuevo campo (type, nombre, size, isPrimaryKey)
