@@ -29,6 +29,15 @@ class Field{
 		void setName(string);
 
 		//~Field();
+
+        // Operators
+        bool operator==(Field nField){
+          if (nField.getName() == name && nField.getType() == type && nField.getSize() == size) {
+            return true;
+          }
+
+          return false;
+        }
 	
 };
 

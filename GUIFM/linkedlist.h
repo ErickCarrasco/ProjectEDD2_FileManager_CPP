@@ -281,6 +281,11 @@ public:
         return temp;
     }
 
+    //OPERATOR []
+    T operator[](int index){
+        return get(index);
+    }
+
     //Destructor
     ~List<T>(){
 

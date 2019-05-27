@@ -40,6 +40,7 @@ private:
     //Funciones del file
     int pos(int);//Calcula la posicion del registro a traves de un indice
     bool availistBuild(int);//Construir la lista de posiciones disponibles
+    int position(int); //Calcula la posición del registro en el índice proporcionado
 
 
 public:
@@ -65,6 +66,29 @@ public:
     bool readFieldData();//Lectura de los campos en el metadata
     bool readAvailData();//Lectura de la ultima posicion borrada del metadata
 
+    //Funciones del FIELD
+    List<Field> getFields(); //Retorna fields
+    int fieldQuantity(); //Cantidad de campos en el archivo
+    int recordQuantity(); //Cantidad de registros en el buffer
+    int blockQuantity(); //Cantidad de bloques en el archivo
+    int getRecordSize(); //Retorna recordSize
+    int getMetaSize(); //Retorna metaSize
+    int getBlockSize(); //Retorna el tamaño de bloque
+
+    //BUFFERS
+    bool addField(int, string, int, bool); //Agregar un nuevo campo (type, nombre, size, isPrimaryKey)
+    bool addField(int, string, int); //Añadir un nuevo campo (type, nombre, size)
+    bool addField(Field); //Agregar un campo desde un objeto Field
+    bool addRecord(List<string>); //Agrega un registro al buffer, toma una lista de strings como datos
+    bool hasPrimaryKey(); //Retorna verdadero si existe un campo llave primaria en el archivo
+
+    bool flush(); //Escribe todos los registros del buffer al archivo
+    bool next(); //Pasa al siguiente bloque
+    bool previous(); //Retorna al bloque anterior
+    bool seek(int); //Busca el n-ésimo bloque (n es el parámetro)
+    List<List<string>> data(); //Retorna el bloque actual
+    List<string> getRecord(int); //Retorna el n-ésimo registro
+
     //OPERADOR
     operator bool(){ //Retorna falso si el archivo no está cargado.
       if (path == "") {
@@ -73,6 +97,9 @@ public:
 
       return true;
     }
+
+    //DESTRUCTOR
+    ~File();
 
 };
 
