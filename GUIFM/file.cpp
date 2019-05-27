@@ -578,7 +578,6 @@ bool File::getLocked(){
     return locked;
 }
 
-
 //DESTRUCTOR
 File::~File(){
     file.close();

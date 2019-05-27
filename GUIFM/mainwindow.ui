@@ -6,21 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>818</width>
-    <height>518</height>
+    <width>893</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../../../MM/2939.jpg</normaloff>../../../MM/2939.jpg</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="Frame_Principal">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>390</y>
-      <width>751</width>
-      <height>61</height>
+      <x>10</x>
+      <y>20</y>
+      <width>871</width>
+      <height>501</height>
      </rect>
     </property>
     <property name="palette">
@@ -47,8 +51,8 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -76,8 +80,8 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -96,8 +100,8 @@
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -105,8 +109,8 @@
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>0</red>
-          <green>0</green>
+          <red>255</red>
+          <green>255</green>
           <blue>255</blue>
          </color>
         </brush>
@@ -126,11 +130,18 @@
     <widget class="QPushButton" name="pB_NewFile">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>20</y>
-       <width>75</width>
-       <height>23</height>
+       <x>90</x>
+       <y>320</y>
+       <width>211</width>
+       <height>91</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>New File</string>
@@ -139,27 +150,146 @@
     <widget class="QPushButton" name="pB_OpenFile">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>20</y>
-       <width>75</width>
-       <height>23</height>
+       <x>510</x>
+       <y>320</y>
+       <width>211</width>
+       <height>91</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>8514oem</family>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="text">
       <string>Open File</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pB_close">
+    <widget class="QLabel" name="lb_Picture">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>20</y>
-       <width>75</width>
-       <height>23</height>
+       <x>0</x>
+       <y>0</y>
+       <width>391</width>
+       <height>171</height>
       </rect>
      </property>
      <property name="text">
-      <string>Exit</string>
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>../../../MM/tumblr_mlwrszqXtM1s8fcpbo2_r1_400.gif</pixmap>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pB_close">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>550</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>540</y>
+      <width>431</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>154</red>
+          <green>147</green>
+          <blue>177</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>0</red>
+          <green>0</green>
+          <blue>127</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>154</red>
+          <green>147</green>
+          <blue>177</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>154</red>
+          <green>147</green>
+          <blue>177</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>154</red>
+          <green>147</green>
+          <blue>177</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_mainPath">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>171</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>No root on work</string>
      </property>
     </widget>
    </widget>
@@ -169,10 +299,156 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>818</width>
+     <width>893</width>
      <height>21</height>
     </rect>
    </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>25</red>
+         <green>37</green>
+         <blue>200</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="128">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>25</red>
+         <green>37</green>
+         <blue>200</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="128">
+         <red>255</red>
+         <green>255</green>
+         <blue>255</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>120</red>
+         <green>120</green>
+         <blue>120</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>25</red>
+         <green>37</green>
+         <blue>200</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="Window">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>25</red>
+         <green>37</green>
+         <blue>200</blue>
+        </color>
+       </brush>
+      </colorrole>
+      <colorrole role="PlaceholderText">
+       <brush brushstyle="SolidPattern">
+        <color alpha="128">
+         <red>0</red>
+         <green>0</green>
+         <blue>0</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen_File"/>
+    <addaction name="actionClose_File"/>
+    <addaction name="actionSave_File"/>
+   </widget>
+   <widget class="QMenu" name="menuField">
+    <property name="title">
+     <string>Field</string>
+    </property>
+    <addaction name="actionAdd_Field"/>
+    <addaction name="actionModify_Field"/>
+    <addaction name="actionDelete_Field"/>
+   </widget>
+   <widget class="QMenu" name="menuRecord">
+    <property name="title">
+     <string>Record</string>
+    </property>
+    <addaction name="actionAdd_Record"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuField"/>
+   <addaction name="menuRecord"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -183,6 +459,41 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionOpen_File">
+   <property name="text">
+    <string>Open File</string>
+   </property>
+  </action>
+  <action name="actionClose_File">
+   <property name="text">
+    <string>Close File</string>
+   </property>
+  </action>
+  <action name="actionAdd_Field">
+   <property name="text">
+    <string>Add Field</string>
+   </property>
+  </action>
+  <action name="actionModify_Field">
+   <property name="text">
+    <string>Modify Field</string>
+   </property>
+  </action>
+  <action name="actionDelete_Field">
+   <property name="text">
+    <string>Delete Field</string>
+   </property>
+  </action>
+  <action name="actionAdd_Record">
+   <property name="text">
+    <string>Add Record</string>
+   </property>
+  </action>
+  <action name="actionSave_File">
+   <property name="text">
+    <string>Save File</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
@@ -194,8 +505,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>430</x>
-     <y>303</y>
+     <x>800</x>
+     <y>583</y>
     </hint>
     <hint type="destinationlabel">
      <x>444</x>

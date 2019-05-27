@@ -10,9 +10,13 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
@@ -24,12 +28,25 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionOpen_File;
+    QAction *actionClose_File;
+    QAction *actionAdd_Field;
+    QAction *actionModify_Field;
+    QAction *actionDelete_Field;
+    QAction *actionAdd_Record;
+    QAction *actionSave_File;
     QWidget *centralWidget;
-    QFrame *frame;
+    QFrame *Frame_Principal;
     QPushButton *pB_NewFile;
     QPushButton *pB_OpenFile;
+    QLabel *lb_Picture;
     QPushButton *pB_close;
+    QFrame *frame_2;
+    QLabel *label_mainPath;
     QMenuBar *menuBar;
+    QMenu *menuFile;
+    QMenu *menuField;
+    QMenu *menuRecord;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -37,12 +54,29 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(818, 518);
+        MainWindow->resize(893, 629);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("../../../MM/2939.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
+        actionOpen_File = new QAction(MainWindow);
+        actionOpen_File->setObjectName(QString::fromUtf8("actionOpen_File"));
+        actionClose_File = new QAction(MainWindow);
+        actionClose_File->setObjectName(QString::fromUtf8("actionClose_File"));
+        actionAdd_Field = new QAction(MainWindow);
+        actionAdd_Field->setObjectName(QString::fromUtf8("actionAdd_Field"));
+        actionModify_Field = new QAction(MainWindow);
+        actionModify_Field->setObjectName(QString::fromUtf8("actionModify_Field"));
+        actionDelete_Field = new QAction(MainWindow);
+        actionDelete_Field->setObjectName(QString::fromUtf8("actionDelete_Field"));
+        actionAdd_Record = new QAction(MainWindow);
+        actionAdd_Record->setObjectName(QString::fromUtf8("actionAdd_Record"));
+        actionSave_File = new QAction(MainWindow);
+        actionSave_File->setObjectName(QString::fromUtf8("actionSave_File"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        frame = new QFrame(centralWidget);
-        frame->setObjectName(QString::fromUtf8("frame"));
-        frame->setGeometry(QRect(30, 390, 751, 61));
+        Frame_Principal = new QFrame(centralWidget);
+        Frame_Principal->setObjectName(QString::fromUtf8("Frame_Principal"));
+        Frame_Principal->setGeometry(QRect(10, 20, 871, 501));
         QPalette palette;
         QBrush brush(QColor(200, 194, 200, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -50,7 +84,7 @@ public:
         QBrush brush1(QColor(0, 0, 127, 255));
         brush1.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Base, brush1);
-        QBrush brush2(QColor(0, 0, 255, 255));
+        QBrush brush2(QColor(255, 255, 255, 255));
         brush2.setStyle(Qt::SolidPattern);
         palette.setBrush(QPalette::Active, QPalette::Window, brush2);
         palette.setBrush(QPalette::Inactive, QPalette::Button, brush);
@@ -59,23 +93,89 @@ public:
         palette.setBrush(QPalette::Disabled, QPalette::Button, brush);
         palette.setBrush(QPalette::Disabled, QPalette::Base, brush2);
         palette.setBrush(QPalette::Disabled, QPalette::Window, brush2);
-        frame->setPalette(palette);
-        frame->setAutoFillBackground(true);
-        frame->setFrameShape(QFrame::StyledPanel);
-        frame->setFrameShadow(QFrame::Raised);
-        pB_NewFile = new QPushButton(frame);
+        Frame_Principal->setPalette(palette);
+        Frame_Principal->setAutoFillBackground(true);
+        Frame_Principal->setFrameShape(QFrame::StyledPanel);
+        Frame_Principal->setFrameShadow(QFrame::Raised);
+        pB_NewFile = new QPushButton(Frame_Principal);
         pB_NewFile->setObjectName(QString::fromUtf8("pB_NewFile"));
-        pB_NewFile->setGeometry(QRect(50, 20, 75, 23));
-        pB_OpenFile = new QPushButton(frame);
+        pB_NewFile->setGeometry(QRect(90, 320, 211, 91));
+        QFont font;
+        font.setFamily(QString::fromUtf8("8514oem"));
+        font.setBold(true);
+        font.setWeight(75);
+        pB_NewFile->setFont(font);
+        pB_OpenFile = new QPushButton(Frame_Principal);
         pB_OpenFile->setObjectName(QString::fromUtf8("pB_OpenFile"));
-        pB_OpenFile->setGeometry(QRect(310, 20, 75, 23));
-        pB_close = new QPushButton(frame);
+        pB_OpenFile->setGeometry(QRect(510, 320, 211, 91));
+        pB_OpenFile->setFont(font);
+        lb_Picture = new QLabel(Frame_Principal);
+        lb_Picture->setObjectName(QString::fromUtf8("lb_Picture"));
+        lb_Picture->setGeometry(QRect(0, 0, 391, 171));
+        lb_Picture->setPixmap(QPixmap(QString::fromUtf8("../../../MM/tumblr_mlwrszqXtM1s8fcpbo2_r1_400.gif")));
+        pB_close = new QPushButton(centralWidget);
         pB_close->setObjectName(QString::fromUtf8("pB_close"));
-        pB_close->setGeometry(QRect(590, 20, 75, 23));
+        pB_close->setGeometry(QRect(800, 550, 75, 23));
+        frame_2 = new QFrame(centralWidget);
+        frame_2->setObjectName(QString::fromUtf8("frame_2"));
+        frame_2->setGeometry(QRect(30, 540, 431, 51));
+        QPalette palette1;
+        palette1.setBrush(QPalette::Active, QPalette::Base, brush1);
+        QBrush brush3(QColor(154, 147, 177, 255));
+        brush3.setStyle(Qt::SolidPattern);
+        palette1.setBrush(QPalette::Active, QPalette::Window, brush3);
+        palette1.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::Window, brush3);
+        palette1.setBrush(QPalette::Disabled, QPalette::Base, brush3);
+        palette1.setBrush(QPalette::Disabled, QPalette::Window, brush3);
+        frame_2->setPalette(palette1);
+        frame_2->setAutoFillBackground(true);
+        frame_2->setFrameShape(QFrame::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Raised);
+        label_mainPath = new QLabel(frame_2);
+        label_mainPath->setObjectName(QString::fromUtf8("label_mainPath"));
+        label_mainPath->setGeometry(QRect(10, 10, 171, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 818, 21));
+        menuBar->setGeometry(QRect(0, 0, 893, 21));
+        QPalette palette2;
+        QBrush brush4(QColor(0, 0, 0, 255));
+        brush4.setStyle(Qt::SolidPattern);
+        palette2.setBrush(QPalette::Active, QPalette::Text, brush4);
+        palette2.setBrush(QPalette::Active, QPalette::Base, brush2);
+        QBrush brush5(QColor(25, 37, 200, 255));
+        brush5.setStyle(Qt::SolidPattern);
+        palette2.setBrush(QPalette::Active, QPalette::Window, brush5);
+        QBrush brush6(QColor(255, 255, 255, 128));
+        brush6.setStyle(Qt::SolidPattern);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Active, QPalette::PlaceholderText, brush6);
+#endif
+        palette2.setBrush(QPalette::Inactive, QPalette::Text, brush4);
+        palette2.setBrush(QPalette::Inactive, QPalette::Base, brush2);
+        palette2.setBrush(QPalette::Inactive, QPalette::Window, brush5);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush6);
+#endif
+        QBrush brush7(QColor(120, 120, 120, 255));
+        brush7.setStyle(Qt::SolidPattern);
+        palette2.setBrush(QPalette::Disabled, QPalette::Text, brush7);
+        palette2.setBrush(QPalette::Disabled, QPalette::Base, brush5);
+        palette2.setBrush(QPalette::Disabled, QPalette::Window, brush5);
+        QBrush brush8(QColor(0, 0, 0, 128));
+        brush8.setStyle(Qt::SolidPattern);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush8);
+#endif
+        menuBar->setPalette(palette2);
+        menuBar->setAutoFillBackground(false);
+        menuFile = new QMenu(menuBar);
+        menuFile->setObjectName(QString::fromUtf8("menuFile"));
+        menuField = new QMenu(menuBar);
+        menuField->setObjectName(QString::fromUtf8("menuField"));
+        menuRecord = new QMenu(menuBar);
+        menuRecord->setObjectName(QString::fromUtf8("menuRecord"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -83,6 +183,17 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuField->menuAction());
+        menuBar->addAction(menuRecord->menuAction());
+        menuFile->addAction(actionOpen_File);
+        menuFile->addAction(actionClose_File);
+        menuFile->addAction(actionSave_File);
+        menuField->addAction(actionAdd_Field);
+        menuField->addAction(actionModify_Field);
+        menuField->addAction(actionDelete_Field);
+        menuRecord->addAction(actionAdd_Record);
 
         retranslateUi(MainWindow);
         QObject::connect(pB_close, SIGNAL(clicked()), MainWindow, SLOT(close()));
@@ -93,9 +204,21 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionOpen_File->setText(QApplication::translate("MainWindow", "Open File", nullptr));
+        actionClose_File->setText(QApplication::translate("MainWindow", "Close File", nullptr));
+        actionAdd_Field->setText(QApplication::translate("MainWindow", "Add Field", nullptr));
+        actionModify_Field->setText(QApplication::translate("MainWindow", "Modify Field", nullptr));
+        actionDelete_Field->setText(QApplication::translate("MainWindow", "Delete Field", nullptr));
+        actionAdd_Record->setText(QApplication::translate("MainWindow", "Add Record", nullptr));
+        actionSave_File->setText(QApplication::translate("MainWindow", "Save File", nullptr));
         pB_NewFile->setText(QApplication::translate("MainWindow", "New File", nullptr));
         pB_OpenFile->setText(QApplication::translate("MainWindow", "Open File", nullptr));
+        lb_Picture->setText(QString());
         pB_close->setText(QApplication::translate("MainWindow", "Exit", nullptr));
+        label_mainPath->setText(QApplication::translate("MainWindow", "No root on work", nullptr));
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
+        menuField->setTitle(QApplication::translate("MainWindow", "Field", nullptr));
+        menuRecord->setTitle(QApplication::translate("MainWindow", "Record", nullptr));
     } // retranslateUi
 
 };
