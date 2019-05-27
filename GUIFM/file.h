@@ -20,9 +20,9 @@ private:
     fstream file; //Filestream del archivo
     string path; //Ruta del archivo que utilzará el File
 
-    int lastDeleted; //Índex del ultimo registro borrado
-    int recordSize; //Tamaño en bytes abarcado por un registro
-    int metaSize; //Tamaño en bytes abarcado por el meta
+    int lastDeleted; //Index del ultimo registro borrado
+    int recordSize; //Size en bytes abarcado por un registro
+    int metaSize; //Size en bytes abarcado por el meta
 
     List<int> availList; //Espacios disponibles en el archivo
     List<Field> fields; //Campos del archivo actual
@@ -77,7 +77,7 @@ public:
 
     //BUFFERS
     bool addField(int, string, int, bool); //Agregar un nuevo campo (type, nombre, size, isPrimaryKey)
-    bool addField(int, string, int); //Añadir un nuevo campo (type, nombre, size)
+    bool addField(int, string, int); //Agregar un nuevo campo (type, nombre, size)
     bool addField(Field); //Agregar un campo desde un objeto Field
     bool addRecord(List<string>); //Agrega un registro al buffer, toma una lista de strings como datos
     bool hasPrimaryKey(); //Retorna verdadero si existe un campo llave primaria en el archivo
