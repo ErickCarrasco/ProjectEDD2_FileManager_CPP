@@ -16,6 +16,12 @@ using namespace std;
 class File{
 
 private:
+    //Variables ya no utilizadas
+    /*
+    ifstream readr;
+    ofstream temp;
+    ofstream save;
+    */
     //File Properties
     fstream file; //Filestream del archivo
     string path; //Ruta del archivo que utilzará el File
@@ -27,14 +33,14 @@ private:
     List<int> availList; //Espacios disponibles en el archivo
     List<Field> fields; //Campos del archivo actual
 
-    BinaryTree index; //B-Tree de búsqueda para indexar
+    BinaryTree index; //B-Tree de busqueda para indexar
 
     bool locked;//Permite bloquear archivo
 
     int blockSize;//Size del bloque
     int currentBlock; //Bloque actual que el buffer está leyendo/escribiendo
 
-    List<List<string>> inBuffer; //Registros cargados en memoria
+    List<List<string>> inBuffer; //Registros cargados en memorie
     List<List<string>> outBuffer; //Registros cargados en memoria
 
     //Funciones del file
@@ -81,6 +87,8 @@ public:
     bool addField(Field); //Agregar un campo desde un objeto Field
     bool addRecord(List<string>); //Agrega un registro al buffer, toma una lista de strings como datos
     bool hasPrimaryKey(); //Retorna verdadero si existe un campo llave primaria en el archivo
+    bool deleteField(int);//Borrar un campo del archivo si este archivo no esta bloqueado
+    bool deleteRecord(int);//Borrar un registro existente del file
 
     bool flush(); //Escribe todos los registros del buffer al archivo
     bool next(); //Pasa al siguiente bloque
@@ -88,6 +96,7 @@ public:
     bool seek(int); //Busca el n-ésimo bloque (n es el parámetro)
     List<List<string>> data(); //Retorna el bloque actual
     List<string> getRecord(int); //Retorna el n-ésimo registro
+
 
     //OPERADOR
     operator bool(){ //Retorna falso si el archivo no está cargado.

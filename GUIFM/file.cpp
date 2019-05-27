@@ -186,7 +186,7 @@ bool File::writeFieldData(){ //Escribir los campos al meta
         string out = "";
 
         /* Estructura del string de los campos:
-        type,name,size|type,name,size */
+        type,name,size|type,name,size, ifPrimaryKey */
 
         for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
              out += to_string(fields[i].getType());
@@ -201,7 +201,7 @@ bool File::writeFieldData(){ //Escribir los campos al meta
             }else{
                 out += "0";
             }
-                if (i != fields.size) { //No añade un '|' después del último registro
+            if (i != fields.size) { //No añade un '|' después del último registro
                 out += "|";
             }
 
@@ -340,6 +340,74 @@ int File::position(int index){
 }
 
 //*** BUFFER FUNCTIONS ***
+
+//AddFIELD
+bool File::addField(int type, string name, int size, bool isPrimaryKey){
+    if(!locked){
+        if(isPrimaryKey){
+            Field newField(type, name, size);
+            if(hasPrimaryKey()){
+                return false;
+            }
+            newField.setPrimaryKey(true);
+            return fields.insert(newField);
+        }else{
+            return fields.insert(Field(type, name, size));
+        }
+    }
+}
+
+//ADDFIELD NO PRIMARY KEY
+bool File::addField(int type, string name, int size){
+    return addField(type, name, size, false);
+}
+
+//ADDFIELD AS FIELD OBJECT
+bool File::addField(Field nField){
+    if(!locked){
+        return fields.insert(nField);
+    }
+    return false;
+}
+
+//ADDRECORD
+bool File::addRecord(List<string> newRecord){
+    return outBuffer.insert(newRecord);
+}
+
+//IFHASPRIMARYKEY
+bool File::hasPrimaryKey(){
+    for (int i = 1;i <= fields.size; i++) {
+        if(fields[i].getIsPrimaryKey()){
+            return true;
+        }
+    }
+    return false;
+}
+
+//DELETEFIELD
+bool File::deleteField(int index){
+    if(!locked){
+        return fields.remove(index);
+    }
+    return false;
+}
+
+//DELETERECORD
+bool File::deleteRecord(int index){
+    file.clear();//Opens file
+    if(file){
+        file.seekp(position(index));//Busca la posicion del registro a eliminar
+        string out;
+        out = "*" + to_string(lastDeleted);//Agregar el * que marca el borrado y el ultimo eliminado (LastDeleted)
+        file.write(out.c_str(), out.length());
+        lastDeleted = index;//El avail List se actualiza y la ultima posicion eliminada es index
+        writeAvailData();//Update del avail List
+        readAvailData();
+        return true;
+    }
+    return false;
+}
 
 //FLUSH
 bool File::flush(){
