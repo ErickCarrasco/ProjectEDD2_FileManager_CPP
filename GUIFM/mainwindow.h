@@ -24,6 +24,8 @@ private slots:
     //void saveFile();
     //void loadFile();
 
+    void createField();
+
     void on_pB_NewFile_clicked();
 
 public:

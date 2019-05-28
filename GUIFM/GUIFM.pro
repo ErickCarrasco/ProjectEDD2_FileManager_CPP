@@ -29,6 +29,7 @@ SOURCES += \
         BinaryTreeNode.cpp \
         Field.cpp \
         Key.cpp \
+        addfield.cpp \
         file.cpp \
         main.cpp \
         mainwindow.cpp
@@ -38,11 +39,13 @@ HEADERS += \
         BinaryTreeNode.h \
         Field.h \
         Key.h \
+        addfield.h \
         file.h \
         linkedlist.h \
         mainwindow.h
 
 FORMS += \
+        addfield.ui \
         mainwindow.ui
 
 # Default rules for deployment.
