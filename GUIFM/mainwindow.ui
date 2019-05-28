@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Dart7FileMaker</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -202,7 +202,7 @@
      <rect>
       <x>30</x>
       <y>540</y>
-      <width>431</width>
+      <width>761</width>
       <height>51</height>
      </rect>
     </property>
@@ -284,7 +284,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>401</width>
+       <width>741</width>
        <height>21</height>
       </rect>
      </property>
@@ -439,16 +439,37 @@
     <addaction name="actionAdd_Field"/>
     <addaction name="actionModify_Field"/>
     <addaction name="actionDelete_Field"/>
+    <addaction name="actionList_Fields"/>
    </widget>
    <widget class="QMenu" name="menuRecord">
     <property name="title">
      <string>Record</string>
     </property>
     <addaction name="actionAdd_Record"/>
+    <addaction name="actionModify_Record"/>
+    <addaction name="actionSeek_Record"/>
+    <addaction name="actionList_Record"/>
+    <addaction name="actionDelete_Record"/>
+   </widget>
+   <widget class="QMenu" name="menuIndex">
+    <property name="title">
+     <string>Index</string>
+    </property>
+    <addaction name="actionCreate_Index"/>
+    <addaction name="actionRe_indexar"/>
+   </widget>
+   <widget class="QMenu" name="menuExport">
+    <property name="title">
+     <string>Export</string>
+    </property>
+    <addaction name="actionExport_as_Excel"/>
+    <addaction name="actionExport_as_XML"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuField"/>
    <addaction name="menuRecord"/>
+   <addaction name="menuIndex"/>
+   <addaction name="menuExport"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -492,6 +513,51 @@
   <action name="actionSave_File">
    <property name="text">
     <string>Save File</string>
+   </property>
+  </action>
+  <action name="actionExport_as_Excel">
+   <property name="text">
+    <string>Export as Excel</string>
+   </property>
+  </action>
+  <action name="actionExport_as_XML">
+   <property name="text">
+    <string>Export as XML</string>
+   </property>
+  </action>
+  <action name="actionCreate_Index">
+   <property name="text">
+    <string>Create Index</string>
+   </property>
+  </action>
+  <action name="actionRe_indexar">
+   <property name="text">
+    <string>Re indexar</string>
+   </property>
+  </action>
+  <action name="actionModify_Record">
+   <property name="text">
+    <string>Modify Record</string>
+   </property>
+  </action>
+  <action name="actionSeek_Record">
+   <property name="text">
+    <string>Seek Record</string>
+   </property>
+  </action>
+  <action name="actionList_Record">
+   <property name="text">
+    <string>List Record</string>
+   </property>
+  </action>
+  <action name="actionDelete_Record">
+   <property name="text">
+    <string>Delete Record</string>
+   </property>
+  </action>
+  <action name="actionList_Fields">
+   <property name="text">
+    <string>List Fields</string>
    </property>
   </action>
  </widget>

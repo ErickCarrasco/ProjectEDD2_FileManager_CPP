@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent){
 
 void MainWindow::openFile(){
   file.closeFile();
-  QString path = QFileDialog::getSaveFileName(this, "Nuevo Archivo", QDir::currentPath(), tr("TXT Files (*.txt)"));
+  QString path = QFileDialog::getSaveFileName(this, "New File", QDir::currentPath(), tr("TXT Files (*.txt)"));
 
   if (!path.isEmpty() && !path.isNull()) {
     remove(path.toStdString().c_str());
@@ -42,12 +42,31 @@ void MainWindow::saveFile(){
     }
 }
 
-/*
-MainWindow::~MainWindow()
-{
-    delete ui;
+void MainWindow::closeFile(){
+    if(file){
+        file.closeFile();
+
+        ui.label_mainPath->setText("File closed");
+        ui.Frame_Principal->show();
+
+    }
 }
-*/
+
+void MainWindow::loadFile(){
+    QString path = QFileDialog::getOpenFileName(this, "Load File", QDir::currentPath(), tr("TXT Files (*.txt)"));
+    if(!path.isEmpty() && !path.isNull()){
+        if(file.openFile(path.toStdString())){
+            QMessageBox::warning(this,"Attention", "Loading file..");
+            ui.Frame_Principal->hide();
+            file.setLock();
+            ui.label_mainPath->setText(path);
+        }
+    }else{
+        QMessageBox::warning(this,"Attention", "Process Killed..");
+        qDebug()<<"Couldn't find file. Killing process..";
+    }
+}
+
 
 void MainWindow::on_pB_NewFile_clicked(){
     openFile();
@@ -60,4 +79,16 @@ void MainWindow::on_actionSave_File_triggered(){
 
 void MainWindow::on_actionAdd_Field_triggered(){
     createField();
+}
+
+void MainWindow::on_actionClose_File_triggered(){
+    closeFile();
+}
+
+void MainWindow::on_pB_OpenFile_clicked(){
+    loadFile();
+}
+
+void MainWindow::on_actionOpen_File_triggered(){
+    loadFile();
 }
