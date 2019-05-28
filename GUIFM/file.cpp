@@ -62,7 +62,7 @@ void File::setLock(){
     writeMetaData();
     //calculateSizes();
 
-    //qDebug() << "File locked successfully";
+    qDebug() << "File locked successfully";
     //seekFirst();
 }
 
@@ -102,11 +102,11 @@ bool File::openFile(){
           //loadIndex();
         }
 
-       //qDebug() << "File opened successfully";
+       qDebug() << "File opened successfully";
         return true;
       }
 
-     //qDebug() << "Error opening file";
+     qDebug() << "Error opening file";
       return false;
 }
 
@@ -183,7 +183,7 @@ bool File::writeFieldData(){ //Escribir los campos al meta
         string out = "";
 
         /* Estructura del string de los campos:
-        type,name,size|type,name,size, ifPrimaryKey */
+        type,name,size, ifPrimaryKey|type,name,size, ifPrimaryKey */
 
         for (int i = 1; i <= fields.size; i++) { //Leer la lista de campos
              out += to_string(fields[i].getType());

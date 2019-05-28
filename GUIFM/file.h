@@ -44,7 +44,6 @@ private:
     List<List<string>> outBuffer; //Registros cargados en memoria
 
     //Funciones del file
-    //int pos(int);//Calcula la posicion del registro a traves de un indice
     long filesize(); //Calcula el tamaño del archivo
     bool availistBuild(int);//Construir la lista de posiciones disponibles
     int position(int); //Calcula la posicion del registro en el indice proporcionado
