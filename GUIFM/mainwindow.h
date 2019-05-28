@@ -21,12 +21,16 @@ private:
 private slots:
     void openFile();
     //void closeFile();
-    //void saveFile();
+    void saveFile();
     //void loadFile();
 
     void createField();
 
     void on_pB_NewFile_clicked();
+
+    void on_actionSave_File_triggered();
+
+    void on_actionAdd_Field_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

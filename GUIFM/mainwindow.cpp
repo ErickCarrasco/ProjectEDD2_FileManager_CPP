@@ -35,6 +35,13 @@ void MainWindow::createField(){
 
 }
 
+void MainWindow::saveFile(){
+    if(file){
+        file.setLock();
+        file.flush();
+    }
+}
+
 /*
 MainWindow::~MainWindow()
 {
@@ -45,4 +52,12 @@ MainWindow::~MainWindow()
 void MainWindow::on_pB_NewFile_clicked(){
     openFile();
 
+}
+
+void MainWindow::on_actionSave_File_triggered(){
+    saveFile();
+}
+
+void MainWindow::on_actionAdd_Field_triggered(){
+    createField();
 }

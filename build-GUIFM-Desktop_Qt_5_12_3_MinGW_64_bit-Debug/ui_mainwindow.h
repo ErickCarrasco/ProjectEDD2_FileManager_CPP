@@ -134,7 +134,7 @@ public:
         frame_2->setFrameShadow(QFrame::Raised);
         label_mainPath = new QLabel(frame_2);
         label_mainPath->setObjectName(QString::fromUtf8("label_mainPath"));
-        label_mainPath->setGeometry(QRect(10, 10, 171, 21));
+        label_mainPath->setGeometry(QRect(10, 10, 401, 21));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

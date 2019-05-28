@@ -1,0 +1,10 @@
+debug/BinaryTree.o
+debug/BinaryTreeNode.o
+debug/Field.o
+debug/Key.o
+debug/addfield.o
+debug/file.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_addfield.o
+debug/moc_mainwindow.o

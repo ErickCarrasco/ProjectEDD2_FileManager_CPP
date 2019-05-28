@@ -312,7 +312,7 @@
      <string>Type</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="comboBox_type">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -337,7 +337,7 @@
      </property>
     </item>
    </widget>
-   <widget class="QRadioButton" name="radioButton_ispk">
+   <widget class="QRadioButton" name="radioButton_isprimarykey">
     <property name="geometry">
      <rect>
       <x>30</x>

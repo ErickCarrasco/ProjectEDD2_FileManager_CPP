@@ -1,0 +1,10 @@
+release/BinaryTree.o
+release/BinaryTreeNode.o
+release/Field.o
+release/Key.o
+release/addfield.o
+release/file.o
+release/main.o
+release/mainwindow.o
+release/moc_addfield.o
+release/moc_mainwindow.o
