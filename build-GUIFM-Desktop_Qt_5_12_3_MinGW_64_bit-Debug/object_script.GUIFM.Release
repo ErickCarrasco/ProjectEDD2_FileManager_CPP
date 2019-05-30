@@ -4,7 +4,10 @@ release/Field.o
 release/Key.o
 release/addfield.o
 release/file.o
+release/leercampo.o
 release/main.o
 release/mainwindow.o
+release/ventanacampos.o
 release/moc_addfield.o
 release/moc_mainwindow.o
+release/moc_ventanacampos.o

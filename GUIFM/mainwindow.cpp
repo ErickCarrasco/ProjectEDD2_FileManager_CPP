@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "addfield.h"
 #include <QMessageBox>
+#include "ventanacampos.h"
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent){
     ui.setupUi(this);
@@ -41,6 +42,13 @@ void MainWindow::saveFile(){
         file.flush();
     }
 }
+
+//void MainWindow::listarField(){
+    /*addField* addF = new addField();
+    addF->setFile(&file);
+    addF->show();*/
+
+//}
 
 void MainWindow::closeFile(){
     if(file){
@@ -92,3 +100,10 @@ void MainWindow::on_pB_OpenFile_clicked(){
 void MainWindow::on_actionOpen_File_triggered(){
     loadFile();
 }
+
+void MainWindow::on_actionList_Fields_triggered()
+{
+    VentanaCampos* window_lec = new VentanaCampos();
+    window_lec->show();
+}
+
