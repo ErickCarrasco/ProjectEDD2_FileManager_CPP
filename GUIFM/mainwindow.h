@@ -44,6 +44,7 @@ public:
     MainWindow(QWidget* parent = 0);
     //~MainWindow();
     File* getFile();
+
 };
 
 #endif // MAINWINDOW_H

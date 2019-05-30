@@ -6,6 +6,8 @@ VentanaCampos::VentanaCampos(QWidget *parent) :
     ui(new Ui::VentanaCampos)
 {
     ui->setupUi(this);
+    ui->Field_Table->insertRow(ui->Field_Table->rowCount());
+    //ui->Field_Table->setItem((ui->Field_Table->rowCount() - 1, 0, );
 }
 
 VentanaCampos::~VentanaCampos()

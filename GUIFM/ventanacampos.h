@@ -2,7 +2,7 @@
 #define VENTANACAMPOS_H
 
 #include <QDialog>
-
+#include <QString>
 namespace Ui {
 class VentanaCampos;
 }
@@ -14,6 +14,10 @@ class VentanaCampos : public QDialog
 public:
     explicit VentanaCampos(QWidget *parent = nullptr);
     ~VentanaCampos();
+    /*int getType();
+    int getSize();
+    int isPrimary();
+    QString getNombre();*/
 
 private slots:
     void on_pushButton_clicked();
