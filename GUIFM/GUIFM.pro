@@ -30,6 +30,7 @@ SOURCES += \
         Field.cpp \
         Key.cpp \
         addfield.cpp \
+        deletefield.cpp \
         file.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
         Field.h \
         Key.h \
         addfield.h \
+        deletefield.h \
         file.h \
         linkedlist.h \
         mainwindow.h \
@@ -48,6 +50,7 @@ HEADERS += \
 
 FORMS += \
         addfield.ui \
+        deletefield.ui \
         mainwindow.ui \
         ventanacampos.ui
 

@@ -3,6 +3,7 @@
 #include "file.h"
 #include "ui_mainwindow.h"
 #include "addfield.h"
+#include "deletefield.h"
 #include <QMessageBox>
 #include "ventanacampos.h"
 
@@ -37,6 +38,13 @@ void MainWindow::createField(){
 
 }
 
+void MainWindow::deleteFieldD(){
+    DeleteField* deleteF = new DeleteField();
+    deleteF->setFile(&file);
+    deleteF->updateComboBox();
+    deleteF->show();
+}
+
 void MainWindow::saveFile(){
     if(file){
         file.setLock();
@@ -44,13 +52,6 @@ void MainWindow::saveFile(){
         RefreshMenuBar();
     }
 }
-
-//void MainWindow::listarField(){
-    /*addField* addF = new addField();
-    addF->setFile(&file);
-    addF->show();*/
-
-//}
 
 void MainWindow::closeFile(){
     if(file){
@@ -136,3 +137,7 @@ void MainWindow::RefreshMenuBar(){
     }
 }
 
+
+void MainWindow::on_actionDelete_Field_triggered(){
+    deleteFieldD();
+}
