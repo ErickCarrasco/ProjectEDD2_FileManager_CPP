@@ -43,6 +43,7 @@ private slots:
 public:
     MainWindow(QWidget* parent = 0);
     //~MainWindow();
+    void RefreshMenuBar();
     File* getFile();
 
 };

@@ -8,7 +8,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent){
     ui.setupUi(this);
-
+    RefreshMenuBar();
     //connect(ui.pB_OpenFile, SIGNAL(()), this, SLOT(openFile()));
 
 
@@ -24,6 +24,7 @@ void MainWindow::openFile(){
     file.openFile(path.toStdString());
     ui.label_mainPath->setText(path);
     ui.Frame_Principal->hide();
+    RefreshMenuBar();
   }else{
     qDebug() << "File path is empty or null. Aborting.";
   }
@@ -40,6 +41,7 @@ void MainWindow::saveFile(){
     if(file){
         file.setLock();
         file.flush();
+        RefreshMenuBar();
     }
 }
 
@@ -55,6 +57,7 @@ void MainWindow::closeFile(){
         file.closeFile();
 
         ui.label_mainPath->setText("File closed");
+        RefreshMenuBar();
         ui.Frame_Principal->show();
 
     }
@@ -68,6 +71,7 @@ void MainWindow::loadFile(){
             ui.Frame_Principal->hide();
             file.setLock();
             ui.label_mainPath->setText(path);
+            RefreshMenuBar();
         }
     }else{
         QMessageBox::warning(this,"Attention", "Process Killed..");
@@ -106,5 +110,29 @@ void MainWindow::on_actionList_Fields_triggered()
     VentanaCampos* window_lec = new VentanaCampos();
     window_lec->setFields(&file);
     window_lec->show();
+}
+
+void MainWindow::RefreshMenuBar(){
+    if(!file){//No loaded file
+        //Blocks main functions
+        ui.menuField->setEnabled(false);//Fields Blocked
+        ui.menuRecord->setEnabled(false);//Records Blocked
+        ui.menuIndex->setEnabled(false);//Index Blocked
+        ui.menuExport->setEnabled(false);//Export Blocked
+    }else{//If a file is loaded
+        if(file.getLocked()){//If the file it's locked
+            //Unblocks some functions
+            ui.menuField->setEnabled(false);//Fields blocked
+            ui.menuRecord->setEnabled(true);//Unblocks Record functions
+            ui.menuIndex->setEnabled(true);//Unblocks Index functions
+            ui.menuExport->setEnabled(true);//Unblocks Export functions
+        }else{
+            //Unblocks all functions
+            ui.menuField->setEnabled(true);//Unblocks field
+            ui.menuRecord->setEnabled(true);//Unblocks Record functions
+            ui.menuIndex->setEnabled(true);//Unblocks Index functions
+            ui.menuExport->setEnabled(true);//Unblocks Export functions
+        }
+    }
 }
 
