@@ -4,7 +4,6 @@ debug/Field.o
 debug/Key.o
 debug/addfield.o
 debug/file.o
-debug/leercampo.o
 debug/main.o
 debug/mainwindow.o
 debug/ventanacampos.o

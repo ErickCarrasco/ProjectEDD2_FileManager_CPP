@@ -104,7 +104,7 @@ void MainWindow::on_actionOpen_File_triggered(){
 void MainWindow::on_actionList_Fields_triggered()
 {
     VentanaCampos* window_lec = new VentanaCampos();
-
+    window_lec->setFields(&file);
     window_lec->show();
 }
 

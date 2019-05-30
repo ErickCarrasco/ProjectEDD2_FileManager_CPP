@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <QString>
+#include "file.h"
+
 namespace Ui {
 class VentanaCampos;
 }
@@ -13,17 +15,16 @@ class VentanaCampos : public QDialog
 
 public:
     explicit VentanaCampos(QWidget *parent = nullptr);
+    void setFields(File*);
     ~VentanaCampos();
-    /*int getType();
-    int getSize();
-    int isPrimary();
-    QString getNombre();*/
 
 private slots:
+    //void
     void on_pushButton_clicked();
 
 private:
     Ui::VentanaCampos *ui;
+    File* file;
 };
 
 #endif // VENTANACAMPOS_H

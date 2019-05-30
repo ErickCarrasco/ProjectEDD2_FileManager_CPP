@@ -4,7 +4,6 @@ release/Field.o
 release/Key.o
 release/addfield.o
 release/file.o
-release/leercampo.o
 release/main.o
 release/mainwindow.o
 release/ventanacampos.o

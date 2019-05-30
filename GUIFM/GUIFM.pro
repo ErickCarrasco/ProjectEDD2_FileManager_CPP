@@ -31,7 +31,6 @@ SOURCES += \
         Key.cpp \
         addfield.cpp \
         file.cpp \
-        leercampo.cpp \
         main.cpp \
         mainwindow.cpp \
         ventanacampos.cpp
@@ -43,7 +42,6 @@ HEADERS += \
         Key.h \
         addfield.h \
         file.h \
-        leercampo.h \
         linkedlist.h \
         mainwindow.h \
         ventanacampos.h

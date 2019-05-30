@@ -28,7 +28,7 @@ public:
     {
         if (VentanaCampos->objectName().isEmpty())
             VentanaCampos->setObjectName(QString::fromUtf8("VentanaCampos"));
-        VentanaCampos->resize(400, 300);
+        VentanaCampos->resize(446, 316);
         pushButton = new QPushButton(VentanaCampos);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(320, 10, 75, 23));
@@ -44,7 +44,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
         Field_Table->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         Field_Table->setObjectName(QString::fromUtf8("Field_Table"));
-        Field_Table->setGeometry(QRect(10, 50, 381, 231));
+        Field_Table->setGeometry(QRect(10, 50, 401, 231));
 
         retranslateUi(VentanaCampos);
 
