@@ -23,7 +23,7 @@ private slots:
     void closeFile();
     void saveFile();
     void loadFile();
-
+    //void listarField();
     void createField();
 
     void on_pB_NewFile_clicked();
@@ -37,6 +37,8 @@ private slots:
     void on_pB_OpenFile_clicked();
 
     void on_actionOpen_File_triggered();
+
+    void on_actionList_Fields_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

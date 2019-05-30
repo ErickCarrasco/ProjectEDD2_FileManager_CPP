@@ -31,8 +31,10 @@ SOURCES += \
         Key.cpp \
         addfield.cpp \
         file.cpp \
+        leercampo.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        ventanacampos.cpp
 
 HEADERS += \
         BinaryTree.h \
@@ -41,12 +43,15 @@ HEADERS += \
         Key.h \
         addfield.h \
         file.h \
+        leercampo.h \
         linkedlist.h \
-        mainwindow.h
+        mainwindow.h \
+        ventanacampos.h
 
 FORMS += \
         addfield.ui \
-        mainwindow.ui
+        mainwindow.ui \
+        ventanacampos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
