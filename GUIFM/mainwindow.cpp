@@ -106,6 +106,10 @@ void MainWindow::on_actionOpen_File_triggered(){
     loadFile();
 }
 
+void MainWindow::on_actionDelete_Field_triggered(){
+    deleteFieldD();
+}
+
 void MainWindow::on_actionList_Fields_triggered()
 {
     VentanaCampos* window_lec = new VentanaCampos();
@@ -138,6 +142,4 @@ void MainWindow::RefreshMenuBar(){
 }
 
 
-void MainWindow::on_actionDelete_Field_triggered(){
-    deleteFieldD();
-}
+
