@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "addfield.h"
 #include "deletefield.h"
+#include "modfield.h"
 #include <QMessageBox>
 #include "ventanacampos.h"
 
@@ -43,6 +44,13 @@ void MainWindow::deleteFieldD(){
     deleteF->setFile(&file);
     deleteF->updateComboBox();
     deleteF->show();
+}
+
+void MainWindow::modifyField(){
+    modField* modF = new modField();
+    modF->setFile(&file);
+    modF->fillElements();
+    modF->show();
 }
 
 void MainWindow::saveFile(){
@@ -110,11 +118,14 @@ void MainWindow::on_actionDelete_Field_triggered(){
     deleteFieldD();
 }
 
-void MainWindow::on_actionList_Fields_triggered()
-{
+void MainWindow::on_actionList_Fields_triggered(){
     VentanaCampos* window_lec = new VentanaCampos();
     window_lec->setFields(&file);
     window_lec->show();
+}
+
+void MainWindow::on_actionModify_Field_triggered(){
+    modifyField();
 }
 
 void MainWindow::RefreshMenuBar(){
@@ -140,6 +151,8 @@ void MainWindow::RefreshMenuBar(){
         }
     }
 }
+
+
 
 
 

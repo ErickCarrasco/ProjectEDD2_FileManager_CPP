@@ -21,6 +21,10 @@ public:
         return data;
     }
 
+    T* getDataPointer(){
+        return &data;
+    }
+
     NodeList<T>* getPrevious(){
         return prev;
     }
@@ -118,6 +122,17 @@ public:
             }
         }
         return currentNode->getData();
+    }
+
+    //GET Pointer
+    T* getPointer(int index){
+        NodeList<T>* currentNodeList = head;
+        for (int i = 2; i <= index; i++) {
+            if(currentNodeList != 0){
+                currentNodeList = currentNodeList->getNext();
+            }
+        }
+        return currentNodeList ->getDataPointer();
     }
 
     //REMOVE Node

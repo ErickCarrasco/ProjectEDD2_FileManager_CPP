@@ -74,6 +74,7 @@ public:
 
     //Funciones del FIELD
     List<Field> getFields(); //Retorna fields
+    List<Field>* getFieldsLocation();
     int fieldQuantity(); //Cantidad de campos en el archivo
     int recordQuantity(); //Cantidad de registros en el buffer
     int blockQuantity(); //Cantidad de bloques en el archivo

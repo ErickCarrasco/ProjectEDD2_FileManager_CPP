@@ -526,6 +526,11 @@ List<Field> File::getFields(){
   return fields;
 }
 
+//GETFIELDSLOCATION
+List<Field>* File::getFieldsLocation(){
+    return &fields;
+}
+
 //GetFieldQuantity
 int File::fieldQuantity(){
     return fields.size;

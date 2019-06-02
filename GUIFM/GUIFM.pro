@@ -34,6 +34,7 @@ SOURCES += \
         file.cpp \
         main.cpp \
         mainwindow.cpp \
+        modfield.cpp \
         ventanacampos.cpp
 
 HEADERS += \
@@ -46,12 +47,14 @@ HEADERS += \
         file.h \
         linkedlist.h \
         mainwindow.h \
+        modfield.h \
         ventanacampos.h
 
 FORMS += \
         addfield.ui \
         deletefield.ui \
         mainwindow.ui \
+        modfield.ui \
         ventanacampos.ui
 
 # Default rules for deployment.

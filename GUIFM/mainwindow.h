@@ -27,6 +27,7 @@ private slots:
     //void listarField();
     void createField();
     void deleteFieldD();
+    void modifyField();
 
     void on_pB_NewFile_clicked();
 
@@ -43,6 +44,8 @@ private slots:
     void on_actionList_Fields_triggered();
 
     void on_actionDelete_Field_triggered();
+
+    void on_actionModify_Field_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

@@ -26,9 +26,9 @@ void addField::on_pb_addField_to_file_clicked(){
                 //type=0;
                 QString nametext = ui->lineEdit_name->text();
                 if(ui->comboBox_type->currentText()=="Character"){
-                    type=1;
-                }else if (ui->comboBox_type->currentText()=="String") {
                     type=2;
+                }else if (ui->comboBox_type->currentText()=="String") {
+                    type=1;
                 }else{
                     type=0;
                 }
