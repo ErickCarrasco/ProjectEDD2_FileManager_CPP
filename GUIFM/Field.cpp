@@ -13,8 +13,8 @@ Field::Field(int nType, string nName, int nSize){
 	size = nSize;
 	primaryKey= false;
 
-	if(type == 1){
-		size=5;
+    if(type == 2){
+        size=1;
 	}
 }
 
@@ -37,8 +37,8 @@ string Field::getName(){
 
 void Field::setType(int nType){
 	type = nType;
-	if (type == 1){
-		size = 5;
+    if (type == 2){
+        size = 1;
 	}
 }
 
