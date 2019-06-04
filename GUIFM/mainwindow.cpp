@@ -5,6 +5,7 @@
 #include "addfield.h"
 #include "deletefield.h"
 #include "modfield.h"
+#include "addrecord.h"
 #include <QMessageBox>
 #include "ventanacampos.h"
 
@@ -53,11 +54,19 @@ void MainWindow::modifyField(){
     modF->show();
 }
 
+void MainWindow::addRecords(){
+    addRecord* addR = new addRecord();
+    addR->setFile(&file);
+    addR->addFields();
+    addR->show();
+}
+
 void MainWindow::saveFile(){
     if(file){
         file.setLock();
-        file.flush();
         RefreshMenuBar();
+        file.flush();
+
     }
 }
 
@@ -128,6 +137,10 @@ void MainWindow::on_actionModify_Field_triggered(){
     modifyField();
 }
 
+void MainWindow::on_actionAdd_Record_triggered(){
+    addRecords();
+}
+
 void MainWindow::RefreshMenuBar(){
     if(!file){//No loaded file
         //Blocks main functions
@@ -151,6 +164,8 @@ void MainWindow::RefreshMenuBar(){
         }
     }
 }
+
+
 
 
 

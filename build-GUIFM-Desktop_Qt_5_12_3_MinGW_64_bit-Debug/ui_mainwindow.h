@@ -67,7 +67,7 @@ public:
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(893, 629);
         QIcon icon;
-        icon.addFile(QString::fromUtf8("../../../MM/2939.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8("large_thumbnail.jpg"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         actionOpen_File = new QAction(MainWindow);
         actionOpen_File->setObjectName(QString::fromUtf8("actionOpen_File"));
@@ -147,7 +147,7 @@ public:
         pB_close->setGeometry(QRect(800, 550, 75, 23));
         frame_2 = new QFrame(centralWidget);
         frame_2->setObjectName(QString::fromUtf8("frame_2"));
-        frame_2->setGeometry(QRect(10, 540, 781, 51));
+        frame_2->setGeometry(QRect(50, 530, 141, 51));
         QPalette palette1;
         palette1.setBrush(QPalette::Active, QPalette::Base, brush1);
         QBrush brush3(QColor(154, 147, 177, 255));
@@ -163,7 +163,8 @@ public:
         frame_2->setFrameShadow(QFrame::Raised);
         label_mainPath = new QLabel(frame_2);
         label_mainPath->setObjectName(QString::fromUtf8("label_mainPath"));
-        label_mainPath->setGeometry(QRect(0, 10, 741, 21));
+        label_mainPath->setGeometry(QRect(20, 10, 111, 21));
+        label_mainPath->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

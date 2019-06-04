@@ -29,6 +29,8 @@ private slots:
     void deleteFieldD();
     void modifyField();
 
+    void addRecords();
+
     void on_pB_NewFile_clicked();
 
     void on_actionSave_File_triggered();
@@ -46,6 +48,8 @@ private slots:
     void on_actionDelete_Field_triggered();
 
     void on_actionModify_Field_triggered();
+
+    void on_actionAdd_Record_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

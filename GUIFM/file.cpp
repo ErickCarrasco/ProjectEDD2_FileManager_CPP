@@ -432,9 +432,10 @@ bool File::flush(){
                     file.seekp(0, ios_base::end);
                 }
 
-                for (int j = 1;j <= outBuffer.size; j++) {
+                for (int j = 1;j <= outBuffer[i].size; j++) {
                     string out = outBuffer[i][j];//Datos a escribir
-
+                    qDebug()<<"Buffer size"<< outBuffer.size;
+                    qDebug() << "Raw out: " << out.c_str();
                     //Agregar espacios si el campo es menor que el field size
                     while (int(out.length()) < fields[j].getSize()) {
                         out += " ";

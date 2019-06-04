@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../MM/2939.jpg</normaloff>../../../MM/2939.jpg</iconset>
+    <normaloff>large_thumbnail.jpg</normaloff>large_thumbnail.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QFrame" name="Frame_Principal">
@@ -200,9 +200,9 @@
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>781</width>
+      <x>50</x>
+      <y>530</y>
+      <width>141</width>
       <height>51</height>
      </rect>
     </property>
@@ -282,14 +282,17 @@
     <widget class="QLabel" name="label_mainPath">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>20</x>
        <y>10</y>
-       <width>741</width>
+       <width>111</width>
        <height>21</height>
       </rect>
      </property>
      <property name="text">
       <string>No root on work</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </widget>

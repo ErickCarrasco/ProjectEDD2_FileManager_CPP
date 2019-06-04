@@ -3,6 +3,7 @@ debug/BinaryTreeNode.o
 debug/Field.o
 debug/Key.o
 debug/addfield.o
+debug/addrecord.o
 debug/deletefield.o
 debug/file.o
 debug/main.o
@@ -10,6 +11,7 @@ debug/mainwindow.o
 debug/modfield.o
 debug/ventanacampos.o
 debug/moc_addfield.o
+debug/moc_addrecord.o
 debug/moc_deletefield.o
 debug/moc_mainwindow.o
 debug/moc_modfield.o
