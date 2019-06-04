@@ -21,10 +21,10 @@
    <widget class="QFrame" name="Frame_Principal">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>20</y>
-      <width>871</width>
-      <height>501</height>
+      <x>80</x>
+      <y>30</y>
+      <width>731</width>
+      <height>451</height>
      </rect>
     </property>
     <property name="palette">
@@ -130,8 +130,8 @@
     <widget class="QPushButton" name="pB_NewFile">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>320</y>
+       <x>30</x>
+       <y>340</y>
        <width>211</width>
        <height>91</height>
       </rect>
@@ -150,8 +150,8 @@
     <widget class="QPushButton" name="pB_OpenFile">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>320</y>
+       <x>490</x>
+       <y>340</y>
        <width>211</width>
        <height>91</height>
       </rect>
@@ -167,43 +167,54 @@
       <string>Open File</string>
      </property>
     </widget>
-    <widget class="QLabel" name="lb_Picture">
+    <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>391</width>
-       <height>171</height>
+       <x>300</x>
+       <y>100</y>
+       <width>161</width>
+       <height>61</height>
       </rect>
      </property>
-     <property name="text">
-      <string/>
+     <property name="font">
+      <font>
+       <family>ISOCPEUR</family>
+       <pointsize>24</pointsize>
+       <italic>true</italic>
+      </font>
      </property>
-     <property name="pixmap">
-      <pixmap>../../../MM/tumblr_mlwrszqXtM1s8fcpbo2_r1_400.gif</pixmap>
+     <property name="text">
+      <string>Dart 7</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="pB_close">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>550</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Exit</string>
-    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>150</y>
+       <width>191</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>ISOCPEUR</family>
+       <pointsize>24</pointsize>
+       <italic>true</italic>
+      </font>
+     </property>
+     <property name="text">
+      <string>File Manager</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>530</y>
+      <x>100</x>
+      <y>500</y>
       <width>141</width>
-      <height>51</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="palette">
@@ -282,7 +293,7 @@
     <widget class="QLabel" name="label_mainPath">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>10</y>
        <width>111</width>
        <height>21</height>
@@ -296,6 +307,209 @@
      </property>
     </widget>
    </widget>
+   <widget class="QLabel" name="label_background">
+    <property name="geometry">
+     <rect>
+      <x>-60</x>
+      <y>0</y>
+      <width>961</width>
+      <height>571</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>futuristic-techno-shape-computer-generated-seamless-loop-abstract-polygon-background-4k-4096x2304_4ln_wanrx__F0000.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>490</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>490</y>
+      <width>171</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Base">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+       <colorrole role="Window">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>252</red>
+          <green>252</green>
+          <blue>252</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pB_close">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Exit</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>label_background</zorder>
+   <zorder>frame_3</zorder>
+   <zorder>frame</zorder>
+   <zorder>Frame_Principal</zorder>
+   <zorder>frame_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

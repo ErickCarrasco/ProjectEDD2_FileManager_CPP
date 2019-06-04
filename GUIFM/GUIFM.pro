@@ -37,6 +37,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         modfield.cpp \
+        modrecord.cpp \
         ventanacampos.cpp
 
 HEADERS += \
@@ -52,6 +53,7 @@ HEADERS += \
         linkedlist.h \
         mainwindow.h \
         modfield.h \
+        modrecord.h \
         ventanacampos.h
 
 FORMS += \
@@ -61,6 +63,7 @@ FORMS += \
         deleterecord.ui \
         mainwindow.ui \
         modfield.ui \
+        modrecord.ui \
         ventanacampos.ui
 
 # Default rules for deployment.

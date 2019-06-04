@@ -52,6 +52,9 @@ void deleteRecord::on_pushButton_DeleteActualRecord_clicked(){
         if(answer == QMessageBox::Yes){
             file->deleteRecord(ui->spinBox->value());
             QMessageBox::about(this, "Success","Record deletion completed");
+            for(int i=1; i<=file->getFields().size; i++){
+                ui->tableWidget->setItem(0,i-1, new QTableWidgetItem(""));
+            }
         }
     }else{
         QMessageBox::warning(this,"","It is risky to delete a record without knowing the data");

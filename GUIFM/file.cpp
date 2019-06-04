@@ -253,11 +253,8 @@ bool File::readAvailData(){
 
         //Construir el AvailList
         availList.clear();
-        qDebug()<<QString::fromStdString("Un treh");
         lastDeleted = stoi(in);
-        qDebug()<<QString::fromStdString("Un treh");
         availistBuild(lastDeleted);
-        qDebug()<<QString::fromStdString("Un treh");
         return true;
       }
 

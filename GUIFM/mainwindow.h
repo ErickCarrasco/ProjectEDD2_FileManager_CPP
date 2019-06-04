@@ -5,6 +5,7 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include "file.h"
+#include <QLabel>
 
 /*
 namespace Ui {
@@ -34,6 +35,7 @@ private slots:
     //Record Options
     void addRecords();
     void deleteARecord();
+    void modifyRecord();
 
     void on_pB_NewFile_clicked();
 
@@ -56,6 +58,8 @@ private slots:
     void on_actionAdd_Record_triggered();
 
     void on_actionDelete_Record_triggered();
+
+    void on_actionModify_Record_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

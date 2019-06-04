@@ -7,13 +7,14 @@
 #include "modfield.h"
 #include "addrecord.h"
 #include "deleterecord.h"
+#include "modrecord.h"
 #include <QMessageBox>
 #include "ventanacampos.h"
 
 MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent){
     ui.setupUi(this);
     RefreshMenuBar();
-    //connect(ui.pB_OpenFile, SIGNAL(()), this, SLOT(openFile()));
+
 
 
 }
@@ -21,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :QMainWindow(parent){
 void MainWindow::openFile(){
   file.closeFile();
   QString path = QFileDialog::getSaveFileName(this, "New File", QDir::currentPath(), tr("TXT Files (*.txt)"));
-
   if (!path.isEmpty() && !path.isNull()) {
     remove(path.toStdString().c_str());
     remove(string(path.toStdString() + ".index").c_str());
@@ -66,6 +66,12 @@ void MainWindow::deleteARecord(){
     deleteRecord* delRec = new deleteRecord();
     delRec->setFile(&file);
     delRec->show();
+}
+
+void MainWindow::modifyRecord(){
+    modRecord* modRec = new modRecord();
+    modRec->setFile(&file);
+    modRec->show();
 }
 
 void MainWindow::saveFile(){
@@ -152,6 +158,10 @@ void MainWindow::on_actionDelete_Record_triggered(){
     deleteARecord();
 }
 
+void MainWindow::on_actionModify_Record_triggered(){
+    modifyRecord();
+}
+
 void MainWindow::RefreshMenuBar(){
     if(!file){//No loaded file
         //Blocks main functions
@@ -175,6 +185,8 @@ void MainWindow::RefreshMenuBar(){
         }
     }
 }
+
+
 
 
 
