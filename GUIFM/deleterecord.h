@@ -21,6 +21,8 @@ public:
 private slots:
     void on_pushButton_loadData_DeleteRecord_clicked();
 
+    void on_pushButton_DeleteActualRecord_clicked();
+
 private:
     Ui::deleteRecord *ui;
     File* file;

@@ -27,6 +27,7 @@ File::File(string nPath){
     blockSize=10;
     inBuffer = List<List<string>>(blockSize);
     outBuffer = List<List<string>>(blockSize);
+    readMetaData();
 
 }
 
@@ -40,6 +41,7 @@ File::File(string nPath, int nBlockSize){
     blockSize = nBlockSize;
     inBuffer = List<List<string>>(blockSize);
     outBuffer = List<List<string>>(blockSize);
+    readMetaData();
 
 }
 
@@ -58,7 +60,7 @@ void File::setLock(){
 
     locked = true;
 
-    //Escribir meta al archivo y calcular los tamaños
+    //Escribir meta al archivo y calcular los sizes
     writeMetaData();
     calculateSize();
 
@@ -241,7 +243,9 @@ bool File::readAvailData(){
 
         //Eliminar los asteriscos del string
         for (size_t i = 0; i < in.length(); i++) {
+          qDebug() << in[i];
           if (in[i] == '*') {
+
             in = in.substr(0, i);
             break;
           }
@@ -249,8 +253,11 @@ bool File::readAvailData(){
 
         //Construir el AvailList
         availList.clear();
+        qDebug()<<QString::fromStdString("Un treh");
         lastDeleted = stoi(in);
+        qDebug()<<QString::fromStdString("Un treh");
         availistBuild(lastDeleted);
+        qDebug()<<QString::fromStdString("Un treh");
         return true;
       }
 
@@ -319,7 +326,7 @@ bool File::availistBuild(int pos){
             }
           }
 
-         //qDebug() << in.c_str();
+          qDebug() << in.c_str();
           return availistBuild(stoi(in));
 
         }else{
@@ -433,7 +440,7 @@ bool File::deleteRecord(int index){
     if(file){
         file.seekp(position(index));//Busca la posicion del registro a eliminar
         string out;
-        out = "*" + to_string(lastDeleted);//Agregar el * que marca el borrado y el ultimo eliminado (LastDeleted)
+        out = "*" + to_string(lastDeleted)+"*";//Agregar el * que marca el borrado y el ultimo eliminado (LastDeleted)
         file.write(out.c_str(), out.length());
         lastDeleted = index;//El avail List se actualiza y la ultima posicion eliminada es index
         writeAvailData();//Update del avail List

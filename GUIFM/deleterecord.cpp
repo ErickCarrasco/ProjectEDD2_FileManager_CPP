@@ -45,3 +45,16 @@ void deleteRecord::on_pushButton_loadData_DeleteRecord_clicked(){
     }
 
 }
+
+void deleteRecord::on_pushButton_DeleteActualRecord_clicked(){
+    if(dataLoaded){//Just for user safety
+        QMessageBox::StandardButton answer = QMessageBox::question(this,"Attention!","Delete the following record?", QMessageBox::Yes | QMessageBox::No);
+        if(answer == QMessageBox::Yes){
+            file->deleteRecord(ui->spinBox->value());
+            QMessageBox::about(this, "Success","Record deletion completed");
+        }
+    }else{
+        QMessageBox::warning(this,"","It is risky to delete a record without knowing the data");
+    }
+
+}
