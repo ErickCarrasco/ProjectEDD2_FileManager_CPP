@@ -44,6 +44,7 @@ public:
     QAction *actionList_Record;
     QAction *actionDelete_Record;
     QAction *actionList_Fields;
+    QAction *actionDisplay_Records;
     QWidget *centralWidget;
     QFrame *Frame_Principal;
     QPushButton *pB_NewFile;
@@ -101,6 +102,8 @@ public:
         actionDelete_Record->setObjectName(QString::fromUtf8("actionDelete_Record"));
         actionList_Fields = new QAction(MainWindow);
         actionList_Fields->setObjectName(QString::fromUtf8("actionList_Fields"));
+        actionDisplay_Records = new QAction(MainWindow);
+        actionDisplay_Records->setObjectName(QString::fromUtf8("actionDisplay_Records"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         Frame_Principal = new QFrame(centralWidget);
@@ -232,9 +235,8 @@ public:
         menuField->addAction(actionList_Fields);
         menuRecord->addAction(actionAdd_Record);
         menuRecord->addAction(actionModify_Record);
-        menuRecord->addAction(actionSeek_Record);
-        menuRecord->addAction(actionList_Record);
         menuRecord->addAction(actionDelete_Record);
+        menuRecord->addAction(actionDisplay_Records);
         menuIndex->addAction(actionCreate_Index);
         menuIndex->addAction(actionRe_indexar);
         menuExport->addAction(actionExport_as_Excel);
@@ -265,6 +267,7 @@ public:
         actionList_Record->setText(QApplication::translate("MainWindow", "List Record", nullptr));
         actionDelete_Record->setText(QApplication::translate("MainWindow", "Delete Record", nullptr));
         actionList_Fields->setText(QApplication::translate("MainWindow", "List Fields", nullptr));
+        actionDisplay_Records->setText(QApplication::translate("MainWindow", "Display Records", nullptr));
         pB_NewFile->setText(QApplication::translate("MainWindow", "New File", nullptr));
         pB_OpenFile->setText(QApplication::translate("MainWindow", "Open File", nullptr));
         lb_Picture->setText(QString());

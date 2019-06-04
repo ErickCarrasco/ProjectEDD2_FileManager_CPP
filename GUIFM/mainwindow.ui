@@ -450,9 +450,8 @@
     </property>
     <addaction name="actionAdd_Record"/>
     <addaction name="actionModify_Record"/>
-    <addaction name="actionSeek_Record"/>
-    <addaction name="actionList_Record"/>
     <addaction name="actionDelete_Record"/>
+    <addaction name="actionDisplay_Records"/>
    </widget>
    <widget class="QMenu" name="menuIndex">
     <property name="title">
@@ -561,6 +560,11 @@
   <action name="actionList_Fields">
    <property name="text">
     <string>List Fields</string>
+   </property>
+  </action>
+  <action name="actionDisplay_Records">
+   <property name="text">
+    <string>Display Records</string>
    </property>
   </action>
  </widget>

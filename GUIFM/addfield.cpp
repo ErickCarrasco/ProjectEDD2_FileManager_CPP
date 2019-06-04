@@ -33,7 +33,7 @@ void addField::on_pb_addField_to_file_clicked(){
                     type=0;
                 }
                 file->addField(type,nametext.toStdString(),ui->spinBox->value(), ui->radioButton_isprimarykey->isChecked());
-                QMessageBox::warning(this,"Success", "A new field was added");
+                QMessageBox::about(this,"Success", "A new field was added");
                 ui->lineEdit_name->setText("");
                 ui->spinBox->setValue(0);
                 ui->radioButton_isprimarykey->setChecked(false);

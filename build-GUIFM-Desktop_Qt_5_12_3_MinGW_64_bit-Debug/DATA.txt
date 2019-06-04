@@ -1,0 +1,6 @@
+-1*****
+1,Codename,10,1|0,Name,4,0|1,User,10,0
+REDECHO   ,1341,Arles     
+EchoFox   ,2342,redechekon
+Blue Falco,1465,Carlos    
+November2 ,5632,Albert    

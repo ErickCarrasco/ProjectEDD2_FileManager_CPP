@@ -19,17 +19,21 @@ private:
     File file;
 
 private slots:
+    //File Options
     void openFile();
     void closeFile();
     void saveFile();
     void loadFile();
 
+    //Field Options
     //void listarField();
     void createField();
     void deleteFieldD();
     void modifyField();
 
+    //Record Options
     void addRecords();
+    void deleteARecord();
 
     void on_pB_NewFile_clicked();
 
@@ -50,6 +54,8 @@ private slots:
     void on_actionModify_Field_triggered();
 
     void on_actionAdd_Record_triggered();
+
+    void on_actionDelete_Record_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

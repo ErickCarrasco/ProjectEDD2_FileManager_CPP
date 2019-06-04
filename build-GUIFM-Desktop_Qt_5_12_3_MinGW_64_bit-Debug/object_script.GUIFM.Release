@@ -5,6 +5,7 @@ release/Key.o
 release/addfield.o
 release/addrecord.o
 release/deletefield.o
+release/deleterecord.o
 release/file.o
 release/main.o
 release/mainwindow.o
@@ -13,6 +14,7 @@ release/ventanacampos.o
 release/moc_addfield.o
 release/moc_addrecord.o
 release/moc_deletefield.o
+release/moc_deleterecord.o
 release/moc_mainwindow.o
 release/moc_modfield.o
 release/moc_ventanacampos.o

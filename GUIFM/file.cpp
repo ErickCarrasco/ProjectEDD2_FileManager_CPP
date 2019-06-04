@@ -60,7 +60,7 @@ void File::setLock(){
 
     //Escribir meta al archivo y calcular los tamaños
     writeMetaData();
-    //calculateSizes();
+    calculateSize();
 
     qDebug() << "File locked successfully";
     //seekFirst();
@@ -290,7 +290,7 @@ bool File::readFieldData(){
           fields.insert(nField);
         }
 
-        //calculateSizes();
+        calculateSize();
         return true;
       }
 
@@ -345,6 +345,32 @@ long File::filesize(){
         return retVal;
     }
     return -1;
+}
+
+//*** CALCULATESIZE ***
+void File::calculateSize(){
+    recordSize = 0;
+    for(int i =1; i<=fields.size; i++){
+        recordSize += fields[i].getSize();
+        //Suma el size de todos los campos
+    }
+
+    recordSize += fields.size;
+    recordSize ++;
+
+    //Bytes abarcados por el metadata
+    file.clear();
+    file.seekg(0, ios::beg);
+
+    string in = "";
+    metaSize = 0;
+    getline(file, in, '\n');
+    metaSize += in.length();
+    getline(file, in, '\n');
+    metaSize += in.length();
+
+    //El tamaño del meta sería todo lo que ha recorrido hasta que termina la info de campos más un salto de línea
+    metaSize += 4;
 }
 
 //*** BUFFER FUNCTIONS ***
@@ -500,22 +526,27 @@ List<List<string>> File::data(){
 }
 
 //GET RECORD
-List<string> File::getRecord(int pos){
+List<string> File::getRecord(int posicion){
     file.clear();
-    if(file){
-        string scan;
-        file.seekg(position(pos));
-        getline(file, scan);
-        stringstream inSS(scan);
-        List<string> nRecord;
-        for(int i =0; i<fields.size;i++){
-            string exData;
-            getline(inSS, exData, ',' );
-            nRecord.insert(exData);
-        }
-        return nRecord;
 
+    if (file) {
+      string in;
+      file.seekg(position(posicion));
+      getline(file, in);
+
+      stringstream inStream(in);
+      List<string> nRecord;
+
+      for (int i = 0; i < fields.size; i++) {
+        string data;
+        getline(inStream, data, ',');
+
+        nRecord.insert(data);
+      }
+
+      return nRecord;
     }
+
     return List<string>(0);
 
 }
