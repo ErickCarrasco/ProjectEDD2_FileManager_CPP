@@ -5,9 +5,9 @@
 
 class BinaryTree{
 private:
-    BinaryTreeNode* raiz = NULL;
-    int Tp;
-    int ts;
+    BinaryTreeNode* root = NULL;
+    int T;
+    int t;
     string printString;
 
 public:

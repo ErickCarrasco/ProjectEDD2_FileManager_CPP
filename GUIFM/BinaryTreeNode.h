@@ -9,12 +9,33 @@ using namespace std;
 
 class BinaryTreeNode{
 	private:
-		BinaryTreeNode* padre = NULL;
-		BinaryTreeNode* left;
-		BinaryTreeNode* right;
+        BinaryTreeNode* parent = NULL;
+        List<Key*>* keys;
+        List<BinaryTreeNode*>* children;
+        int T;
+        int t;
 	public:
+        //Constructors
 		BinaryTreeNode();
 		BinaryTreeNode(int);
+
+        //Getters
+        List<Key*>* getKeys();
+        Key* getKeyAt(int);
+        BinaryTreeNode* getParent();
+        int getT();
+        int getMinimum();
+        List<BinaryTreeNode*>* getChildren();
+        BinaryTreeNode* getChildrenAt(int);
+
+        //Setter
+        void setParent(BinaryTreeNode*);
+
+        //Others
+        bool isLeaf();
+        string toString();
+        void addChild(BinaryTreeNode*);
+        void removeLastChild();
 		~BinaryTreeNode();
 	
 };
