@@ -105,6 +105,12 @@ public:
     List<List<string>> data(); //Retorna el bloque actual
     List<string> getRecord(int); //Retorna el n-ésimo registro
 
+    //INDEX
+
+    //EXPORT
+    void exportCSV(string);//Exportacion formato valores separados por commas (Comma-separated values)
+    void exportXML(string);//Exportacion formato XML
+
 
     //OPERADOR
     operator bool(){ //Retorna falso si el archivo no está cargado.

@@ -7,6 +7,8 @@ DisplayRecords::DisplayRecords(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    //QHeaderView* header = ui->tableWidget->horizontalHeader();
+    //header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 DisplayRecords::~DisplayRecords(){
@@ -56,6 +58,7 @@ void DisplayRecords::refreshTableData(){
                             ui->tableWidget->setItem(i-1, j-1, new QTableWidgetItem("-"));
                         }else{
                             ui->tableWidget->setItem(i-1, j-1, new QTableWidgetItem(records[i][j].c_str()));
+                            qDebug()<<QString::fromStdString(records[i][j].c_str());
                         }
                     }
                 }
