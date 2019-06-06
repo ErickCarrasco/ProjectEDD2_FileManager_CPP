@@ -223,6 +223,21 @@ public:
       return false;
     }
 
+    int IndexOf(T data){
+        NodeList<T>* currentNodeList = head;
+        int counter;
+        counter = 0;
+        while(currentNodeList != 0){
+            counter++;
+            if(currentNodeList->getData()==data){
+                return counter;
+            }else{
+                currentNodeList = currentNodeList->getNext();
+            }
+        }
+        return 0;
+    }
+
 
     //Verify ifEmpty
     bool isEmpty(){

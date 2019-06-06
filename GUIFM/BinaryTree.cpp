@@ -34,7 +34,7 @@ void BinaryTree::insert(Key* k){
     temp->getKeys()->insert(k);
     sort(temp);
     if(temp->getKeys()->size > temp->getT()-1){
-        //split
+        split(temp);
     }
 }
 
@@ -53,6 +53,55 @@ BinaryTreeNode* BinaryTree::getLeaf(BinaryTreeNode* nNode, string key){
         nNode = getLeaf(nNode, key);
     }
     return nNode;
+}
+
+void BinaryTree::split(BinaryTreeNode* Node){
+    BinaryTreeNode* Top = Node->getParent();
+    BinaryTreeNode* leftNode = new BinaryTreeNode(T);//New Node
+    BinaryTreeNode* rightNode = new BinaryTreeNode(T);//New Node
+    int halfNum= ((Node->getKeys()->size-1)/2) + 1;//Gets the half number of the NodeKeys, allowing to get that key for later promotion
+
+    //Inserting keys into the left and right nodes
+    for(int i =1; i<=Node->getKeys()->size;i++){
+        if(i<halfNum){//Inserts all the keys before the half key into the left node
+            leftNode->getKeys()->insert(Node->getKeyAt(i));
+        }else if (i>halfNum) {
+            rightNode->getKeys()->insert(Node->getKeyAt(i));
+        }
+    }
+
+    //Adding their respective children. Used mostly during deletes, and merges
+    for (int i = 1;i<=Node->getChildren()->size;i++) {
+        if(i<=halfNum){
+            leftNode->addChild(Node->getChildrenAt(i));
+        }else{
+            rightNode->addChild(Node->getChildrenAt(i));
+        }
+    }
+
+    //Verify if Top exists
+    if(Top==NULL){
+        Top = new BinaryTreeNode(T);//Creates a new Node
+        Top->getKeys()->insert(Node->getKeyAt(halfNum));//Inserts the key at the middle of the splitting node into the Top
+        sort(Top);//Sorts top to keep an order
+        Top->addChild(leftNode);//Inserts child
+        Top->addChild(rightNode);//Inserts child
+        root = Top;//Top becomes root, root now has the elements of Top
+    }else{//If Top exists
+        int index = Top->getChildren()->IndexOf(Node);
+        Top->getKeys()->insert(Node->getKeyAt(halfNum));//Inserts the key at the Top Node
+        sort(Top);//Orders the Top Node
+        leftNode->setParent(Top);//The left node has the Top as parent
+        Top->getChildren()->replace(index, leftNode);//Replacing the old node with the new one
+        Top->addChild(rightNode);//Adds the new Node right as a child
+        for (int i = Top->getChildren()->size;  i>index+1;i--) {
+            Top->getChildren()->swap(i, i-1);
+        }
+    }
+    if(Top->getKeys()->size > T-1){//In case that the Top has full keys
+        split(Top);
+    }
+
 }
 
 /*
