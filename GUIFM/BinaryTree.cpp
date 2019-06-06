@@ -104,6 +104,45 @@ void BinaryTree::split(BinaryTreeNode* Node){
 
 }
 
+void BinaryTree::remove(string key){
+    BinaryTreeNode* temp = new BinaryTreeNode(T);
+    temp = root;
+    temp = findNode(temp, key);
+    for(int i=1; i<= temp->getKeys()->size;i++){
+        if(key == temp->getKeyAt(i)->getKey()){
+            temp->getKeys()->remove(i);
+        }
+    }
+    if(temp->getKeys()->size<t){
+        //merge(temp);
+    }
+}
+
+BinaryTreeNode* BinaryTree::findNode(BinaryTreeNode* Node, string key){
+    bool verify = false;
+    if(!Node->isLeaf()){
+        for (int i = 1;i<= Node->getKeys()->size; i++) {
+            if(key == Node->getKeyAt(i)->getKey()){
+                return Node;
+            }else if (key < Node->getKeyAt(i)->getKey() && !verify) {
+                Node = Node->getChildrenAt(i);
+                verify = true;
+            }
+        }
+        if(!verify){
+            Node = Node->getChildrenAt(Node->getChildren()->size);
+        }
+        return findNode(Node, key);
+    }else{
+        for (int i = 1;i<=Node->getKeys()->size;i++) {
+            if(key == Node->getKeyAt(i)->getKey()){
+                return Node;
+            }
+        }
+    }
+    return NULL;
+}
+
 /*
 
 BinaryTree::BinaryTree(int nT, BinaryTreeNode* node){
