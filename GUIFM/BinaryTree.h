@@ -23,6 +23,16 @@ public:
     int findIndex(BinaryTreeNode*, string);
     BinaryTreeNode* findNode(BinaryTreeNode*, string);
 
+    /*
+=======
+    BinaryTree(int, BinaryTreeNode*);
+    void Merge();
+    void Delete();
+    void Sort();
+    void split();
+    ~BinaryTree();
+>>>>>>> 247022649874dce1a955106aea5c889f7769d2ab
+*/
 };
 
 #endif // BINARYTREE_H
