@@ -12,6 +12,12 @@ private:
 
 public:
     BinaryTree();
+    BinaryTree(int, BinaryTreeNode*);
+    void Merge();
+    void Delete();
+    void Sort();
+    void split();
+    ~BinaryTree();
 };
 
 #endif // BINARYTREE_H
