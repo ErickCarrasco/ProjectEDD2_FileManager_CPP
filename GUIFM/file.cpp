@@ -65,7 +65,7 @@ void File::setLock(){
     calculateSize();
 
     qDebug() << "File locked successfully";
-    //seekFirst();
+    seekFirst();
 }
 
 //Open File
@@ -100,7 +100,7 @@ bool File::openFile(){
         //NEEDS UPDATE !!
         if (exists) {
           readMetaData();
-          //seekFirst();
+          seekFirst();
           //loadIndex();
         }
 
@@ -510,8 +510,60 @@ bool File::seek(int block){
     }
 
     if(file){
+        if(block > blockQuantity()){//Out of bounds
+            return false;
+        }
+        if(block<1){//Can't search negatives
+            return false;
+        }
 
+        long seekPosition = metaSize + (block-1)*blockSize*recordSize;
+        qDebug() << "Seek position: " << seekPosition;
+
+        if(seekPosition > filesize()){
+            return false;
+            qDebug()<<"Failed to load";
+        }
+
+        file.seekg(seekPosition, ios::beg);
+        inBuffer.clear();
+
+        int cont =0;
+        string in;
+        while (getline(file, in) && cont < blockSize) {
+            qDebug()<<"Extracting..";
+            in = in.substr(0, in.length()-2);
+            stringstream inStream(in);
+            List<string> nRecord;
+            for (int i = 0; i < fields.size; i++) {
+              string data;
+              getline(inStream, data, ',');
+
+              nRecord.insert(data);
+            }
+            inBuffer.insert(nRecord);
+            cont++;
+        }
+        currentBlock = block;
+        qDebug()<<"Extracted";
+        return true;
     }
+    return false;
+}
+
+//RECSEEK
+bool File::recSeek(){
+    return seek(currentBlock);
+}
+
+//SEEKFIRST
+bool File::seekFirst(){
+    currentBlock=1;
+    return seek(currentBlock);
+}
+
+bool File::seekLast(){
+    return seek(blockQuantity());
 }
 
 //NEXT
@@ -521,8 +573,26 @@ bool File::next(){
     }else{
         currentBlock++;
     }
+
+    if(seek(currentBlock)){
+        return true;
+    }else{
+        currentBlock--;
+        return false;
+    }
 }
 
+//PREVIOUS
+bool File::previous(){
+    currentBlock--;
+
+    if(seek(currentBlock)){
+        return true;
+    }else{
+        currentBlock++;
+        return false;
+    }
+}
 
 //BLOCK DATA
 List<List<string>> File::data(){
@@ -617,6 +687,10 @@ string File::getPath(){
 //GetIsLocked
 bool File::getLocked(){
     return locked;
+}
+
+int File::getCurrentBlock(){
+    return currentBlock;
 }
 
 //DESTRUCTOR

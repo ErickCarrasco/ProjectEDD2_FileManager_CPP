@@ -84,6 +84,7 @@ public:
     int getBlockSize(); //Retorna el tamaño de bloque
     string getPath();//Retorna el path
     bool getLocked();//Retorna si el archivo esta bloqueado
+    int getCurrentBlock();//Retorna bloque actual
 
     //BUFFERS
     bool addField(int, string, int, bool); //Agregar un nuevo campo (type, nombre, size, isPrimaryKey)
@@ -98,6 +99,9 @@ public:
     bool next(); //Pasa al siguiente bloque
     bool previous(); //Retorna al bloque anterior
     bool seek(int); //Busca el n-ésimo bloque (n es el parámetro)
+    bool recSeek();//Repite el seek en el bloque actual
+    bool seekFirst();
+    bool seekLast();
     List<List<string>> data(); //Retorna el bloque actual
     List<string> getRecord(int); //Retorna el n-ésimo registro
 

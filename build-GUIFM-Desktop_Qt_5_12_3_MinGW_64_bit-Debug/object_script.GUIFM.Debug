@@ -6,6 +6,7 @@ debug/addfield.o
 debug/addrecord.o
 debug/deletefield.o
 debug/deleterecord.o
+debug/displayrecords.o
 debug/file.o
 debug/main.o
 debug/mainwindow.o
@@ -16,6 +17,7 @@ debug/moc_addfield.o
 debug/moc_addrecord.o
 debug/moc_deletefield.o
 debug/moc_deleterecord.o
+debug/moc_displayrecords.o
 debug/moc_mainwindow.o
 debug/moc_modfield.o
 debug/moc_modrecord.o

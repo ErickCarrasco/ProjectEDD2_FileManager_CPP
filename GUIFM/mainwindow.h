@@ -36,6 +36,7 @@ private slots:
     void addRecords();
     void deleteARecord();
     void modifyRecord();
+    void showRecords();
 
     void on_pB_NewFile_clicked();
 
@@ -60,6 +61,8 @@ private slots:
     void on_actionDelete_Record_triggered();
 
     void on_actionModify_Record_triggered();
+
+    void on_actionDisplay_Records_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);

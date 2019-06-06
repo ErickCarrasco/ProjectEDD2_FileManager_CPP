@@ -8,6 +8,7 @@
 #include "addrecord.h"
 #include "deleterecord.h"
 #include "modrecord.h"
+#include "displayrecords.h"
 #include <QMessageBox>
 #include "ventanacampos.h"
 
@@ -72,6 +73,13 @@ void MainWindow::modifyRecord(){
     modRecord* modRec = new modRecord();
     modRec->setFile(&file);
     modRec->show();
+}
+
+void MainWindow::showRecords(){
+    DisplayRecords* disRec = new DisplayRecords();
+    disRec->setFile(&file);
+    //disRec->refreshTableData();
+    disRec->show();
 }
 
 void MainWindow::saveFile(){
@@ -162,6 +170,10 @@ void MainWindow::on_actionModify_Record_triggered(){
     modifyRecord();
 }
 
+void MainWindow::on_actionDisplay_Records_triggered(){
+    showRecords();
+}
+
 void MainWindow::RefreshMenuBar(){
     if(!file){//No loaded file
         //Blocks main functions
@@ -185,14 +197,5 @@ void MainWindow::RefreshMenuBar(){
         }
     }
 }
-
-
-
-
-
-
-
-
-
 
 

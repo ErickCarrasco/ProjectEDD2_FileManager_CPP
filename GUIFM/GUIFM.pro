@@ -33,6 +33,7 @@ SOURCES += \
         addrecord.cpp \
         deletefield.cpp \
         deleterecord.cpp \
+        displayrecords.cpp \
         file.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -49,6 +50,7 @@ HEADERS += \
         addrecord.h \
         deletefield.h \
         deleterecord.h \
+        displayrecords.h \
         file.h \
         linkedlist.h \
         mainwindow.h \
@@ -61,6 +63,7 @@ FORMS += \
         addrecord.ui \
         deletefield.ui \
         deleterecord.ui \
+        displayrecords.ui \
         mainwindow.ui \
         modfield.ui \
         modrecord.ui \
