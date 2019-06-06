@@ -118,6 +118,35 @@ void BinaryTree::remove(string key){
     }
 }
 
+void BinaryTree::merge(BinaryTreeNode* Node){
+    BinaryTreeNode* NewNode = Node->getParent();
+    BinaryTreeNode* leftNode = new BinaryTreeNode(T);//New Node
+    BinaryTreeNode* rightNode = new BinaryTreeNode(T);//New Node
+    int halfNum= ((Node->getKeys()->size-1)/2) + 1;//Gets the half number of the NodeKeys, allowing to get that key for later promotion
+    //Inserting keys into the left and right nodes
+    for(int i =1; i<=Node->getKeys()->size;i++){
+        if(i<halfNum){//Inserts all the keys before the half key into the left node
+            leftNode->getKeys()->insert(Node->getKeyAt(i));
+        }else if (i>halfNum) {
+            rightNode->getKeys()->insert(Node->getKeyAt(i));
+        }
+    }
+    //Adding their respective children. Used mostly during deletes, and merges
+    for (int i = 1;i<=Node->getChildren()->size;i++) {
+        if(i<=halfNum){
+            leftNode->addChild(Node->getChildrenAt(i));
+        }else{
+            rightNode->addChild(Node->getChildrenAt(i));
+        }
+    }
+    for (int i=0;i<leftNode->getKeys()->size;i++) {
+        NewNode->getKeys()->insert(leftNode->getKeyAt(i));
+    }
+    for (int i=0;i<rightNode->getKeys()->size;i++) {
+        NewNode->getKeys()->insert(rightNode->getKeyAt(i));
+    }
+}
+
 BinaryTreeNode* BinaryTree::findNode(BinaryTreeNode* Node, string key){
     bool verify = false;
     if(!Node->isLeaf()){

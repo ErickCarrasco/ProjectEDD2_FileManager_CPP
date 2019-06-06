@@ -7,8 +7,8 @@ DisplayRecords::DisplayRecords(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    //QHeaderView* header = ui->tableWidget->horizontalHeader();
-    //header->setSectionResizeMode(QHeaderView::Stretch);
+    QHeaderView* header = ui->tableWidget->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 DisplayRecords::~DisplayRecords(){
@@ -22,8 +22,8 @@ void DisplayRecords::setFile(File* nFile){
 }
 
 void DisplayRecords::refreshTableData(){
-    //file->flush();
-    //file->recSeek();
+    file->flush();
+    file->recSeek();
     ui->tableWidget->setColumnCount(file->fieldQuantity());//Column quantity according to the field quantity
     for(int i =0;i< file->getBlockSize();i++){
         int index = ((file->getCurrentBlock()-1)*file->getBlockSize()) + i + 1;
