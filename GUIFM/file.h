@@ -48,7 +48,7 @@ private:
     bool availistBuild(int);//Construir la lista de posiciones disponibles
     int position(int); //Calcula la posicion del registro en el indice proporcionado
     void calculateSize();//Calcula multiples sizes (Record size, metadata size)..
-
+    bool buildIndex(); //crea indice
 
 public:
     //CONSTRUCTORES

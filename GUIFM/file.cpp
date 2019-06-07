@@ -626,6 +626,47 @@ List<string> File::getRecord(int posicion){
 }
 
 //***FIELD OPERATIONS***
+bool File::buildIndex(){
+    file.clear();
+
+    if (!locked) {
+       return false;
+    }
+
+    if (!hasPrimaryKey()) {
+       return false;
+    }
+
+    if (recordQuantity() <= 0) {
+       return false;
+    }
+
+    if(file){
+        index = BinaryTree(5);
+        int pastBlock = currentBlock;
+        seekFirst();
+
+        int primaryKeyIndex =0;
+        for(int i = 1; i<=fields.size;i++){
+            if(fields[i].getIsPrimaryKey()){
+                primaryKeyIndex = 1;
+                break;
+            }
+        }
+
+        for(int i = 1; i<=blockQuantity(); i++){
+            List<List<string>> block = data();
+            for(int j = 1; j<=block.size; j++){
+                index.insert(new Key(block[j][primaryKeyIndex], j + ((i-1)*(blockSize))));
+            }
+            next();
+        }
+        file.clear();
+        seek(pastBlock);
+    return true;
+    }
+}
+
 
 //GETFIELDS
 List<Field> File::getFields(){
