@@ -22,6 +22,9 @@ public:
     BinaryTreeNode* getLeaf(BinaryTreeNode*, string);
     int findIndex(BinaryTreeNode*, string);
     BinaryTreeNode* findNode(BinaryTreeNode*, string);
+    void printPrev();
+    void printPrev(BinaryTreeNode*);
+    string getString();
 
     /*
 =======

@@ -172,6 +172,26 @@ BinaryTreeNode* BinaryTree::findNode(BinaryTreeNode* Node, string key){
     return NULL;
 }
 
+void BinaryTree::printPrev(){
+    printString="";
+    printPrev(root);
+}
+
+void BinaryTree::printPrev(BinaryTreeNode* Node){
+    if(!Node->isLeaf()){
+        printPrev(Node->getChildrenAt(1));
+        printString+= Node->toString();
+        printString+= '\n';
+        for (int i = 2; i <= Node->getChildren()->size; i++) {
+          printPrev(Node->getChildrenAt(i));
+        }
+
+    }else{
+        printString+=Node->toString();
+        printString+='\n';
+    }
+}
+
 /*
 
 BinaryTree::BinaryTree(int nT, BinaryTreeNode* node){

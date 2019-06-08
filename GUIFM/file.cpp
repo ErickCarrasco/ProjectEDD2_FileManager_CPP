@@ -625,49 +625,6 @@ List<string> File::getRecord(int posicion){
 
 }
 
-//***FIELD OPERATIONS***
-bool File::buildIndex(){
-    file.clear();
-
-    if (!locked) {
-       return false;
-    }
-
-    if (!hasPrimaryKey()) {
-       return false;
-    }
-
-    if (recordQuantity() <= 0) {
-       return false;
-    }
-
-    if(file){
-        index = BinaryTree(5);
-        int pastBlock = currentBlock;
-        seekFirst();
-
-        int primaryKeyIndex =0;
-        for(int i = 1; i<=fields.size;i++){
-            if(fields[i].getIsPrimaryKey()){
-                primaryKeyIndex = 1;
-                break;
-            }
-        }
-
-        for(int i = 1; i<=blockQuantity(); i++){
-            List<List<string>> block = data();
-            for(int j = 1; j<=block.size; j++){
-                index.insert(new Key(block[j][primaryKeyIndex], j + ((i-1)*(blockSize))));
-            }
-            next();
-        }
-        file.clear();
-        seek(pastBlock);
-    return true;
-    }
-}
-
-
 //GETFIELDS
 List<Field> File::getFields(){
   return fields;
@@ -732,6 +689,73 @@ bool File::getLocked(){
 
 int File::getCurrentBlock(){
     return currentBlock;
+}
+
+//*** INDEX FUNCTIONS ***
+
+//BuildIndex
+bool File::buildIndex(){
+    file.clear();
+
+    if (!locked) {
+       return false;
+    }
+
+    if (!hasPrimaryKey()) {
+       return false;
+    }
+
+    if (recordQuantity() <= 0) {
+       return false;
+    }
+
+    if(file){
+        index = BinaryTree(5);
+        int pastBlock = currentBlock;
+        seekFirst();
+
+        int primaryKeyIndex =0;
+        for(int i = 1; i<=fields.size;i++){
+            if(fields[i].getIsPrimaryKey()){
+                primaryKeyIndex = 1;
+                break;
+            }
+        }
+
+        for(int i = 1; i<=blockQuantity(); i++){
+            List<List<string>> block = data();
+            for(int j = 1; j<=block.size; j++){
+                index.insert(new Key(block[j][primaryKeyIndex], j + ((i-1)*(blockSize))));
+            }
+            next();
+        }
+        file.clear();
+        seek(pastBlock);
+        return true;
+    }
+}
+
+//SaveIndex
+void File::saveIndex(){
+    ofstream ret;
+    if (!hasPrimaryKey()) {
+        qDebug() << "File has no primary key. Process killed.";
+        return;
+    }
+
+    ret.open(string(path + ".index"));
+    if(ret){
+        index.printPrev();
+        ret << index.getString();
+        ret.flush();
+        ret.close();
+        qDebug()<<"Index has been created";
+        QMessageBox::about(0,"Saved","Index has been saved");
+    }else{
+        qDebug() << "Error on saving index. Process killed.";
+        QMessageBox::about(0,"Error","Index couldn't be saved");
+    }
+
 }
 
 //DESTRUCTOR
