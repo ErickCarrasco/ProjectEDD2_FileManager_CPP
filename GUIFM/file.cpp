@@ -758,6 +758,27 @@ void File::saveIndex(){
 
 }
 
+//LoadIndex
+void File::LoadIndex(){
+    ifstream inFile;
+    inFile.open(string(path + ".index"));
+    if (inFile && hasPrimaryKey()) {
+        index = BinaryTree(5);
+        string extData = "";
+        while (getline(inFile, extData, '\n')) {
+            string extKey;
+            string extIndex;
+            index.insert(new Key(extKey, stoi(extIndex)));
+
+        }
+        inFile.close();
+        qDebug()<<"index extracted";
+    }else {
+        QMessageBox::warning(0,"Error", "Index could not be loaded, check that the file has an index");
+        qDebug()<<"Error at reading the index. Could not be found or has no index";
+    }
+}
+
 //DESTRUCTOR
 File::~File(){
     file.close();

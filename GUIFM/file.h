@@ -108,6 +108,7 @@ public:
     //INDEX
     bool buildIndex(); //crea indexado para el file
     void saveIndex();//Guarda el index creado
+    void LoadIndex();//Cargar el archivo de indices
 
     //EXPORT
     void exportCSV(string);//Exportacion formato valores separados por commas (Comma-separated values)
