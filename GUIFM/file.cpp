@@ -568,7 +568,7 @@ bool File::seekLast(){
 
 //NEXT
 bool File::next(){
-    if (currentBlock<=1) {
+    if (currentBlock<=-1) {
         currentBlock=1;
     }else{
         currentBlock++;
