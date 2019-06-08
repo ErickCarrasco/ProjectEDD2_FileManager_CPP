@@ -1,5 +1,5 @@
-3*****
+-1****
 1,Name,10,0|1,Codename,10,1|0,Age,2,0
 Joseph    ,iosef     ,19
 Rodrigo   ,rodrix    ,21
-*-1*en    ,Soyoz     ,20
+Steven    ,Soyoz     ,20

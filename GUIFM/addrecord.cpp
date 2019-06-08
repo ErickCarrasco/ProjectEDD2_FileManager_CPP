@@ -49,14 +49,45 @@ void addRecord::on_pushButton_addRecord_to_file_clicked(){
             List<string> values;
             QString singleV;
             QTableWidgetItem* item;
+            string itemValueString;
             for (int i = 1;i<=file->getFields().size;i++) {
                 item = ui->tableWidget_addRecords->takeItem(i-1,2);
                 singleV = item->text();
+                itemValueString=(singleV.toStdString());
                 if(file->getFields().get(i).getType()==0 && !validateTypeInteger(item->text())){
                     QMessageBox::warning(this,"ERROR", "Could not add record, check that the entered data matches its type");
                     dataSaved=false;
                     break;
                 }
+
+                /*
+                if(file->getFields().get(i).getIsPrimaryKey()){
+                    for (int j = 1;j<=file->getRecordSize();j++) {
+                        List<string> recordComparer;
+                        recordComparer= file->getRecord(j);
+                        string keyComparison="";
+                        for(int k = 1; k<=file->getFields().size;i++){
+                            if(file->getFields().get(k).getIsPrimaryKey()){
+                                keyComparison = recordComparer.get(k);
+                                qDebug()<<"keyComparison: "<<QString::fromStdString(keyComparison);
+                            }
+                            while(int(itemValueString.length())<primaryKeySize){
+                                qDebug()<<"Executing data";
+                                itemValueString+=" ";
+                            }
+                            qDebug()<<"Executing data";
+                            if(keyComparison==itemValueString){
+                                qDebug()<<"Executing data";
+                                QMessageBox::warning(this,"ERROR", "Could not add record, check that the entered data matches its type");
+                                qDebug()<<"Executing data";
+                                dataSaved=false;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                */
                 //qDebug()<<"Value: "<<i<<": "<<singleV;
                 values.insert(singleV.toStdString());
             }
@@ -67,6 +98,7 @@ void addRecord::on_pushButton_addRecord_to_file_clicked(){
                     //qDebug()<<"Value: "<<i<< "Data: "<<QString::fromStdString(out);
                 }
                 file->addRecord(values);
+                file->flush();
             }
 
 

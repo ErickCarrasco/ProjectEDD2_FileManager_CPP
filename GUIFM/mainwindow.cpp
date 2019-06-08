@@ -173,6 +173,12 @@ void MainWindow::on_actionModify_Record_triggered(){
 void MainWindow::on_actionDisplay_Records_triggered(){
     showRecords();
 }
+void MainWindow::on_actionCreate_Index_triggered(){
+    file.buildIndex();
+    file.saveIndex();
+    QMessageBox::about(this, "Success", "Index has been saved");
+
+}
 
 void MainWindow::RefreshMenuBar(){
     if(!file){//No loaded file
@@ -197,5 +203,7 @@ void MainWindow::RefreshMenuBar(){
         }
     }
 }
+
+
 
 

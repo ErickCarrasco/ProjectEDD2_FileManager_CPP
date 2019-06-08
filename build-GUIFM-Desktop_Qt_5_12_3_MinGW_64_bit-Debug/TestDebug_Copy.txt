@@ -3,3 +3,5 @@
 Joseph    ,iosef     ,19
 Rodrigo   ,rodrix    ,21
 Steven    ,Soyoz     ,20
+Erix      ,iosek     ,23
+LOL       ,noName    ,24

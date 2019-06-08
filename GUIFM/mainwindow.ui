@@ -672,7 +672,6 @@
      <string>Index</string>
     </property>
     <addaction name="actionCreate_Index"/>
-    <addaction name="actionRe_indexar"/>
    </widget>
    <widget class="QMenu" name="menuExport">
     <property name="title">

@@ -64,6 +64,8 @@ private slots:
 
     void on_actionDisplay_Records_triggered();
 
+    void on_actionCreate_Index_triggered();
+
 public:
     MainWindow(QWidget* parent = 0);
     //~MainWindow();

@@ -710,14 +710,14 @@ bool File::buildIndex(){
     }
 
     if(file){
-        index = BinaryTree(5);
+        index = BinaryTree(3);
         int pastBlock = currentBlock;
         seekFirst();
 
         int primaryKeyIndex =0;
         for(int i = 1; i<=fields.size;i++){
             if(fields[i].getIsPrimaryKey()){
-                primaryKeyIndex = 1;
+                primaryKeyIndex = i;
                 break;
             }
         }
@@ -726,12 +726,16 @@ bool File::buildIndex(){
             List<List<string>> block = data();
             for(int j = 1; j<=block.size; j++){
                 index.insert(new Key(block[j][primaryKeyIndex], j + ((i-1)*(blockSize))));
+                qDebug() << "Indexing Key " << block[j][primaryKeyIndex].c_str() << " at " << j + ((i - 1)*blockSize);
             }
             next();
         }
         file.clear();
         seek(pastBlock);
         return true;
+    }else{
+        qDebug() << "File unaccesible. Aborting index build.";
+        return false;
     }
 }
 
@@ -742,18 +746,19 @@ void File::saveIndex(){
         qDebug() << "File has no primary key. Process killed.";
         return;
     }
-
-    ret.open(string(path + ".index"));
+    qDebug()<<QString::fromStdString(path);
+    ret.open(string(path + ".index"), ios::binary);
     if(ret){
         index.printPrev();
         ret << index.getString();
         ret.flush();
         ret.close();
         qDebug()<<"Index has been created";
-        QMessageBox::about(0,"Saved","Index has been saved");
+        //QMessageBox::about(0,"Saved","Index has been saved");
+        ret.close();
     }else{
         qDebug() << "Error on saving index. Process killed.";
-        QMessageBox::about(0,"Error","Index couldn't be saved");
+        //QMessageBox::about(0,"Error","Index couldn't be saved");
     }
 
 }
@@ -777,6 +782,35 @@ void File::LoadIndex(){
         QMessageBox::warning(0,"Error", "Index could not be loaded, check that the file has an index");
         qDebug()<<"Error at reading the index. Could not be found or has no index";
     }
+}
+
+//*** SEEK RECORD WITH INDEX ***
+
+//RecordSeeker
+
+bool File::RecordSeeker(string key){
+    int primaryKeySize = 0;
+    for (int i = 1;i<=fields.size;i++) {
+        if(fields[i].getIsPrimaryKey()){
+            primaryKeySize= fields[i].getSize();
+        }
+    }
+    if(primaryKeySize>0){
+        //La llave enviada debe tener el mismo size del primaryKey creado por el usuario
+        while(int(key.length())<primaryKeySize){
+            key+=" ";
+        }
+
+        int ind = index.findIndex(key);
+        if(ind == -1){
+            return false;
+        }else{
+            seek(floor(ind/blockSize) +1);
+            return true;
+        }
+
+    }
+    return false;
 }
 
 //DESTRUCTOR

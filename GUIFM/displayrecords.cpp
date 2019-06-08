@@ -1,5 +1,6 @@
 #include "displayrecords.h"
 #include "ui_displayrecords.h"
+#include "seekrecord.h"
 
 DisplayRecords::DisplayRecords(QWidget *parent) :
     QWidget(parent),
@@ -81,4 +82,43 @@ void DisplayRecords::refreshTableData(){
 
 void DisplayRecords::on_pushButton_refreshTabe_clicked(){
     refreshTableData();
+}
+
+void DisplayRecords::on_pushButton_previousPage_clicked(){
+    if(file->previous()){
+        refreshTableData();
+    }
+
+}
+
+void DisplayRecords::on_pushButton_nextPage_clicked(){
+    if(file->next()){
+        refreshTableData();
+    }
+
+}
+
+void DisplayRecords::on_pushButton_SearchRecord_clicked(){
+    if(file->hasPrimaryKey()){
+        bool hasIndex;
+        string path = string(file->getPath() + ".index");
+        ifstream inIndex(path);
+        if(!inIndex.good()){
+            hasIndex = false;
+        }else {
+            hasIndex=true;
+        }
+
+        if(hasIndex){
+            seekRecord* sR = new seekRecord();
+            sR->setFile(file);
+            sR->show();
+        }else{
+            QMessageBox::about(this,"No index", "Cannot load an index, please make sure you created the file index");
+        }
+
+    }else{
+        QMessageBox::about(this, "Wait!","You cannot seeek record without a primary key");
+    }
+
 }

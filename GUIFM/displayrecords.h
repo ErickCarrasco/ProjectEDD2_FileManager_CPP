@@ -21,6 +21,12 @@ public:
 private slots:
     void on_pushButton_refreshTabe_clicked();
 
+    void on_pushButton_previousPage_clicked();
+
+    void on_pushButton_nextPage_clicked();
+
+    void on_pushButton_SearchRecord_clicked();
+
 private:
     Ui::DisplayRecords *ui;
     File* file;

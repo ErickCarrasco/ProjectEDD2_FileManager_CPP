@@ -55,9 +55,9 @@ string BinaryTreeNode::toString(){
     string temporary;
     temporary="";
     for (int i = 1; i <= keys->size; i++) {
-        temporary+=(keys->get(i)->getKey()) + ";" + to_string(keys->get(i)->getIndex());
+        temporary+=(keys->get(i)->getKey()) + "," + to_string(keys->get(i)->getIndex());
         if(i<keys->size){
-            temporary+="|";
+            temporary+=";";
         }
 
     }

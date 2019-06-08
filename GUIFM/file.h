@@ -110,6 +110,9 @@ public:
     void saveIndex();//Guarda el index creado
     void LoadIndex();//Cargar el archivo de indices
 
+    //Seek Record through Index
+    bool RecordSeeker(string);
+
     //EXPORT
     void exportCSV(string);//Exportacion formato valores separados por commas (Comma-separated values)
     void exportXML(string);//Exportacion formato XML

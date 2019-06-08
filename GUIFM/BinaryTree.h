@@ -1,6 +1,7 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
 #include "BinaryTreeNode.h"
+#include <QDebug>
 
 
 class BinaryTree{
@@ -20,11 +21,13 @@ public:
     void remove(string);
     void merge(BinaryTreeNode*);
     BinaryTreeNode* getLeaf(BinaryTreeNode*, string);
+    int findIndex(string);
     int findIndex(BinaryTreeNode*, string);
     BinaryTreeNode* findNode(BinaryTreeNode*, string);
     void printPrev();
     void printPrev(BinaryTreeNode*);
     string getString();
+
 
     /*
 =======

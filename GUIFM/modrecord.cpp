@@ -58,6 +58,7 @@ void modRecord::on_pushButton_ModActualRecord_clicked(){
                 for(int i=1; i<=file->getFields().size; i++){ //Deletes any change made on the table
                     ui->tableWidget->setItem(0,i-1, new QTableWidgetItem(""));
                 }
+                file->flush();
             }else{
                 QMessageBox::warning(this, "Error", "Record could not be edited");
             }
