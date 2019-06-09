@@ -97,11 +97,11 @@ bool File::openFile(){
       }
 
       if (file) {
-        //NEEDS UPDATE !!
+
         if (exists) {
           readMetaData();
           seekFirst();
-          //loadIndex();
+          //LoadIndex();
         }
 
        qDebug() << "File opened successfully";
@@ -710,7 +710,7 @@ bool File::buildIndex(){
     }
 
     if(file){
-        index = BinaryTree(3);
+        index = BinaryTree(6);
         int pastBlock = currentBlock;
         seekFirst();
 
@@ -755,7 +755,6 @@ void File::saveIndex(){
         ret.close();
         qDebug()<<"Index has been created";
         //QMessageBox::about(0,"Saved","Index has been saved");
-        ret.close();
     }else{
         qDebug() << "Error on saving index. Process killed.";
         //QMessageBox::about(0,"Error","Index couldn't be saved");
@@ -811,6 +810,39 @@ bool File::RecordSeeker(string key){
 
     }
     return false;
+}
+
+//*** EXPORT ***
+
+//ExportCSV
+void File::exportCSV(string exportPath){
+    ofstream expCSV;
+    expCSV.open(exportPath);
+    if(expCSV){
+        for(int i =1; i<= fields.size;i++){
+            expCSV<< fields[i].getName();
+            if(i<fields.size){
+                expCSV<<",";
+            }
+        }
+        expCSV<<endl;
+        seekFirst();
+        for(int i = 1; i<=blockQuantity(); i++){
+            List<List<string>> block = data();
+            for (int j = 1; j<=block.size;j++) {
+                for(int k =1;k<=block[j].size; k++){
+                    expCSV<<block[j][k];
+                    if(k<block[j].size){
+                        expCSV<<",";
+                    }
+                }
+                expCSV<<endl;
+            }
+            next();
+        }
+        expCSV.close();
+    }
+
 }
 
 //DESTRUCTOR

@@ -6,6 +6,7 @@
 #include <QDebug>
 #include "file.h"
 #include <QLabel>
+#include <QObject>
 
 /*
 namespace Ui {
@@ -65,6 +66,13 @@ private slots:
     void on_actionDisplay_Records_triggered();
 
     void on_actionCreate_Index_triggered();
+
+    void on_actionExport_as_Excel_triggered();
+
+    void on_actionExit_triggered();
+
+
+    void on_actionGenerate_File_triggered();
 
 public:
     MainWindow(QWidget* parent = 0);
